@@ -37,6 +37,12 @@ namespace fizzBuzz
                 }
             }
             return dict;
+            //var ausgabe = new List<string>();
+            //foreach (KeyValuePair<int, string> item in dict)
+            //{
+            //    ausgabe.Add(item.Value);
+            //}
+            //return ausgabe;
         }
     }
 }
