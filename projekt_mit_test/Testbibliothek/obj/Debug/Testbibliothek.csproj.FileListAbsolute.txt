@@ -1,0 +1,15 @@
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\NUnit3.TestAdapter.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\nunit.engine.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\nunit.engine.api.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\Mono.Cecil.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\Testbibliothek.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\Testbibliothek.pdb
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\nunit.framework.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\projekt_mit_test.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\projekt_mit_test.pdb
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\nunit.framework.pdb
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\bin\Debug\nunit.framework.xml
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\obj\Debug\Testbibliothek.csprojResolveAssemblyReference.cache
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\obj\Debug\Testbibliothek.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\Testbibliothek\obj\Debug\Testbibliothek.pdb

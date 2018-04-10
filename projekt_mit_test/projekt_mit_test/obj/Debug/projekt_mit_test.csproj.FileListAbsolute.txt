@@ -1,0 +1,5 @@
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\projekt_mit_test\bin\Debug\projekt_mit_test.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\projekt_mit_test\bin\Debug\projekt_mit_test.pdb
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\projekt_mit_test\obj\Debug\projekt_mit_test.csprojResolveAssemblyReference.cache
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\projekt_mit_test\obj\Debug\projekt_mit_test.dll
+C:\Thomas\source\repos\Projekte_Azubis\Projekt_mit_Test\projekt_mit_test\projekt_mit_test\obj\Debug\projekt_mit_test.pdb
