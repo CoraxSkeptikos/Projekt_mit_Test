@@ -29,7 +29,7 @@ namespace königfröhlich
 
                 foreach (int i in ziffern)
                 {
-                    testzahl = testzahl + Convert.ToInt32(Math.Sqrt(i));
+                    testzahl = testzahl + Convert.ToInt32(Math.Pow(i, 2));
                 }
             }
 
