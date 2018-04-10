@@ -17,5 +17,12 @@ namespace Testbibliothek
             var ergebnis = FizzBuzz.Start_FizzBuzz(1, 15);
             Assert.AreEqual(new[] { "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz" }, ergebnis.ToArray());
         }
+
+        [Test, Category("Gerüsttest")]
+        public void Anzahl_Zahlen()
+        {
+            var ergebnis = FizzBuzz.Start_FizzBuzz(1, 108);
+            Assert.AreEqual(108, ergebnis.Count());
+        }
     }
 }

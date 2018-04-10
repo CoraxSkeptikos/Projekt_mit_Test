@@ -8,13 +8,13 @@ namespace fizzBuzz
 {
     public class FizzBuzz
     {
-        public static Dictionary<int, string> Start_FizzBuzz(int untergrenze, int obergrenze)
+        public static List<string> Start_FizzBuzz(int untergrenze, int obergrenze)
         {
             var aufruf = Wörterbuch(untergrenze, obergrenze);
             return aufruf;
         }
 
-        internal static Dictionary<int, string> Wörterbuch(int untergrenze, int obergrenze)
+        internal static List<string> Wörterbuch(int untergrenze, int obergrenze)
         {
             var dict = new Dictionary<int, string>();
             for (int zahl = untergrenze; zahl <= obergrenze; zahl++)
@@ -36,13 +36,12 @@ namespace fizzBuzz
                     dict.Add(zahl, zahl.ToString());
                 }
             }
-            return dict;
-            //var ausgabe = new List<string>();
-            //foreach (KeyValuePair<int, string> item in dict)
-            //{
-            //    ausgabe.Add(item.Value);
-            //}
-            //return ausgabe;
+            var ausgabe = new List<string>();
+            foreach (KeyValuePair<int, string> item in dict)
+            {
+                ausgabe.Add(item.Value);
+            }
+            return ausgabe;
         }
     }
 }
