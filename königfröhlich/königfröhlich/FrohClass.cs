@@ -10,32 +10,52 @@ namespace königfröhlich
     {
         public static bool Start_Frohtester(int testzahl)
         {
-            var aufruf = Frohtester(testzahl);
-            return aufruf;
+            var ergebnis = Frohtester(testzahl);
+
+            var ausgabe = Auswertung(ergebnis);
+            return ausgabe;
         }
 
-        internal static bool Frohtester(int testzahl)
+        internal static int Frohtester(int testzahl)
         {
             while (testzahl != 4 && testzahl != 1)
             {
-                string zahlenstring = testzahl.ToString();
-                List<int> ziffern = new List<int>();
-                testzahl = 0;
+                var ziffern = Liste_anlegen(testzahl);
 
-                foreach (char ziffer in zahlenstring)
-                {
-                    ziffern.Add((int)Char.GetNumericValue(ziffer));
-                }
-
-                foreach (int i in ziffern)
-                {
-                    testzahl = testzahl + i * i;
-                }
+                testzahl = Berechnung(ziffern);        
             }
 
+            return testzahl;
+        }
+
+        internal static List<int> Liste_anlegen (int testzahl)
+        {
+            string zahlenstring = testzahl.ToString();
+            List<int> ziffern = new List<int>();
+
+            foreach (char ziffer in zahlenstring)
+            {
+                ziffern.Add((int)Char.GetNumericValue(ziffer));
+            }
+
+            return ziffern;
+        }
+
+        internal static int Berechnung (List<int> ziffern)
+        {
+            int testzahl = 0;
+            foreach (int i in ziffern)
+            {
+                testzahl = testzahl + i * i;
+            }
+            return testzahl;
+        }
+
+        internal static bool Auswertung (int ergebnis)
+        {
             bool wert;
 
-            if (testzahl == 1)
+            if (ergebnis == 1)
             {
                 wert = true;
             }
@@ -43,6 +63,7 @@ namespace königfröhlich
             {
                 wert = false;
             }
+
             return wert;
         }
     }
