@@ -24,12 +24,12 @@ namespace königfröhlich
 
                 foreach (char ziffer in zahlenstring)
                 {
-                    ziffern.Add(Convert.ToInt32(ziffer.ToString()));
+                    ziffern.Add((int)Char.GetNumericValue(ziffer));
                 }
 
                 foreach (int i in ziffern)
                 {
-                    testzahl = testzahl + Convert.ToInt32(Math.Pow(i, 2));
+                    testzahl = testzahl + i * i;
                 }
             }
 
