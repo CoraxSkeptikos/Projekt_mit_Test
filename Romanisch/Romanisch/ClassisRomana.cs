@@ -10,8 +10,10 @@ namespace Romanisch
     {
         public static string Initium(int numerus_barbarus)
         {
-            var expletium = Translator.Primum(numerus_barbarus);
-            return expletium;
+            var mille = Translator.Divide_Mili(numerus_barbarus);
+            numerus_barbarus = Translator.Subtrahe(numerus_barbarus, mille);
+            var numerus_romanus = Translator.Adde_Milli(mille);
+            return numerus_romanus;
             
         }
     }
