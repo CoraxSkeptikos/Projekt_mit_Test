@@ -20,17 +20,17 @@ namespace Romanisch
             return numerus_barbarus;
         }
 
-        internal static Dictionary<string, int> Congerere_Vocabularium(int[] spacium)
+        internal static Dictionary<string, int> Congerere_Vocabularium(int[] compositio)
         {
             var vocabularium = new Dictionary<string, int>();
 
-            vocabularium.Add("M", spacium[0]);
-            vocabularium.Add("D", spacium[1]);
-            vocabularium.Add("C", spacium[2]);
-            vocabularium.Add("L", spacium[3]);
-            vocabularium.Add("X", spacium[4]);
-            vocabularium.Add("V", spacium[5]);
-            vocabularium.Add("I", spacium[6]);
+            vocabularium.Add("M", compositio[0]);
+            vocabularium.Add("D", compositio[1]);
+            vocabularium.Add("C", compositio[2]);
+            vocabularium.Add("L", compositio[3]);
+            vocabularium.Add("X", compositio[4]);
+            vocabularium.Add("V", compositio[5]);
+            vocabularium.Add("I", compositio[6]);
 
             return vocabularium;
         }

@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace Romanisch
 {
-    public class ClassisRomana
+    public class GenusRomanus
     {
         public static string Initium(int numerus_barbarus)
         {
-            int[] spacium = new int[7];
-            spacium[0] = Translator.Divide(numerus_barbarus, 1000);
+            int[] compositio = new int[7];
+            compositio[0] = Translator.Divide(numerus_barbarus, 1000);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 1000);
 
-            spacium[1] = Translator.Divide(numerus_barbarus, 500);
+            compositio[1] = Translator.Divide(numerus_barbarus, 500);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 500);
 
-            spacium[2] = Translator.Divide(numerus_barbarus, 100);
+            compositio[2] = Translator.Divide(numerus_barbarus, 100);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 100);
 
-            spacium[3] = Translator.Divide(numerus_barbarus, 50);
+            compositio[3] = Translator.Divide(numerus_barbarus, 50);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 50);
 
-            spacium[4] = Translator.Divide(numerus_barbarus, 10);
+            compositio[4] = Translator.Divide(numerus_barbarus, 10);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 10);
 
-            spacium[5] = Translator.Divide(numerus_barbarus, 5);
-            spacium[6] = Translator.Modulo(numerus_barbarus, 5);
+            compositio[5] = Translator.Divide(numerus_barbarus, 5);
+            compositio[6] = Translator.Modulo(numerus_barbarus, 5);
 
 
-            var vocabularium = Translator.Congerere_Vocabularium(spacium);
+            var vocabularium = Translator.Congerere_Vocabularium(compositio);
             var numerus_romanus = Translator.Congerere_Numerus_Romanus(vocabularium);
 
             numerus_romanus = Simplificator.Unicum(numerus_romanus);
