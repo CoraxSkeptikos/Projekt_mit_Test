@@ -70,5 +70,25 @@ namespace Romanisch
             }
             return numerus_romanus;
         }
+
+        internal static string Adde_Quinquo(string numerus_romanus, int quinque)
+        {
+            while (quinque > 0)
+            {
+                numerus_romanus += "V";
+                quinque--;
+            }
+            return numerus_romanus;
+        }
+
+        internal static string Adde_Una(string numerus_romanus, int una)
+        {
+            while (una > 0)
+            {
+                numerus_romanus += "I";
+                una--;
+            }
+            return numerus_romanus;
+        }
     }
 }
