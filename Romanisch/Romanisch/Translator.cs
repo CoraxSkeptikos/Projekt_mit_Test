@@ -38,9 +38,10 @@ namespace Romanisch
         internal static string Congerere_Numerus_Romanus(Dictionary<string, int> vocabularium)
         {
             string numerus_romanus = "";
+            int iteratio;
             foreach (KeyValuePair<string, int> res in vocabularium)
             {
-                int iteratio = res.Value;
+                iteratio = res.Value;
                 while (iteratio > 0)
                 {
                     numerus_romanus += res.Key;
