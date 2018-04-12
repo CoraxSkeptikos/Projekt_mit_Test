@@ -50,5 +50,25 @@ namespace Romanisch
             }
             return numerus_romanus;
         }
+
+        internal static string Adde_Quinquaginto(string numerus_romanus, int quinquaginta)
+        {
+            while (quinquaginta > 0)
+            {
+                numerus_romanus += "L";
+                quinquaginta--;
+            }
+            return numerus_romanus;
+        }
+
+        internal static string Adde_Deco(string numerus_romanus, int decem)
+        {
+            while (decem > 0)
+            {
+                numerus_romanus += "X";
+                decem--;
+            }
+            return numerus_romanus;
+        }
     }
 }

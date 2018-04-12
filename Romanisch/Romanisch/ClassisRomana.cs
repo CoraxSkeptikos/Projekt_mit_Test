@@ -19,9 +19,17 @@ namespace Romanisch
             var centum = Translator.Divide(numerus_barbarus, 100);
             numerus_barbarus = Translator.Modulo(numerus_barbarus, 100);
 
+            var quinquaginta = Translator.Divide(numerus_barbarus, 50);
+            numerus_barbarus = Translator.Modulo(numerus_barbarus, 50);
+
+            var decem = Translator.Divide(numerus_barbarus, 10);
+            numerus_barbarus = Translator.Modulo(numerus_barbarus, 10);
+
             var numerus_romanus = Translator.Adde_Mili(mille);
             numerus_romanus = Translator.Adde_Quingeno(numerus_romanus, quingeni);
             numerus_romanus = Translator.Adde_Centi(numerus_romanus, centum);
+            numerus_romanus = Translator.Adde_Quinquaginto(numerus_romanus, quinquaginta);
+            numerus_romanus = Translator.Adde_Deco(numerus_romanus, decem);
 
             return numerus_romanus;
         }

@@ -15,15 +15,16 @@ namespace BibliothecaExperimentorum
         [Test, Category ("1")]
         public void Experimentum_Primum()
         {
-            Assert.AreEqual("M", ClassisRomana.Initium(1000));
-            Assert.AreEqual("MM", ClassisRomana.Initium(2000));
-            Assert.AreEqual("MMMDCC", ClassisRomana.Initium(3745));
-            Assert.AreEqual("C", ClassisRomana.Initium(100));
-            Assert.AreEqual("D", ClassisRomana.Initium(500));
-            Assert.AreEqual("DC", ClassisRomana.Initium(600));
-            Assert.AreEqual("DCC", ClassisRomana.Initium(708));
-            Assert.AreEqual("", ClassisRomana.Initium(56));
-            Assert.AreEqual("CCCC", ClassisRomana.Initium(448));
+            Assert.AreEqual("MMDCCCCX", ClassisRomana.Initium(2914));
+            Assert.AreEqual("MDCLX", ClassisRomana.Initium(1665));
+            Assert.AreEqual("MDCXXX", ClassisRomana.Initium(1638));
+            Assert.AreEqual("MMCCCXXX", ClassisRomana.Initium(2336));
+            Assert.AreEqual("MMDCCXXX", ClassisRomana.Initium(2734));
+            Assert.AreEqual("MCCL", ClassisRomana.Initium(1254));
+            Assert.AreEqual("MMCCC", ClassisRomana.Initium(2306));
+            Assert.AreEqual("MLXX", ClassisRomana.Initium(1075));
+            Assert.AreEqual("DCCCCXXXX", ClassisRomana.Initium(943));
+            Assert.AreEqual("CX", ClassisRomana.Initium(115));
 
         }
     }
