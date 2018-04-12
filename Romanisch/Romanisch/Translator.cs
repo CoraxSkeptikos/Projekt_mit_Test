@@ -8,15 +8,15 @@ namespace Romanisch
 {
     class Translator
     {
-        internal static int Divide_Mili(int numerus_barbarus)
+        internal static int Divide(int numerus_barbarus, int divisor)
         {
-            int mille = numerus_barbarus / 1000;
-            return mille;
+            int quotient = numerus_barbarus / divisor;
+            return quotient;
         }
 
-        internal static int Modulo_Mili(int numerus_barbarus)
+        internal static int Modulo(int numerus_barbarus, int divisor)
         {
-            numerus_barbarus %= 1000;
+            numerus_barbarus %= divisor;
             return numerus_barbarus;
         }
 
@@ -32,18 +32,6 @@ namespace Romanisch
         }
 
 
-
-        internal static int Divide_Quingeno(int numerus_barbarus)
-        {
-            int quingeni = numerus_barbarus / 500;
-            return quingeni;
-        }
-
-        internal static int Modulo_Quingeni(int numerus_barbarus)
-        {
-            numerus_barbarus %= 500;
-            return numerus_barbarus;
-        }
 
         internal static string Adde_Quingeno(string numerus_romanus, int quingeni)
         {
