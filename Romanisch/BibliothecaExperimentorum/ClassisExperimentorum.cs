@@ -17,11 +17,13 @@ namespace BibliothecaExperimentorum
         {
             Assert.AreEqual("M", ClassisRomana.Initium(1000));
             Assert.AreEqual("MM", ClassisRomana.Initium(2000));
-            Assert.AreEqual("MMMD", ClassisRomana.Initium(3745));
-            Assert.AreEqual("", ClassisRomana.Initium(100));
+            Assert.AreEqual("MMMDCC", ClassisRomana.Initium(3745));
+            Assert.AreEqual("C", ClassisRomana.Initium(100));
             Assert.AreEqual("D", ClassisRomana.Initium(500));
-            Assert.AreEqual("D", ClassisRomana.Initium(600));
-            Assert.AreEqual("D", ClassisRomana.Initium(708));
+            Assert.AreEqual("DC", ClassisRomana.Initium(600));
+            Assert.AreEqual("DCC", ClassisRomana.Initium(708));
+            Assert.AreEqual("", ClassisRomana.Initium(56));
+            Assert.AreEqual("CCCC", ClassisRomana.Initium(448));
 
         }
     }

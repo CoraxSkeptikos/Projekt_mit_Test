@@ -31,14 +31,22 @@ namespace Romanisch
             return numerus_romanus;
         }
 
-
-
         internal static string Adde_Quingeno(string numerus_romanus, int quingeni)
         {
             while (quingeni > 0)
             {
                 numerus_romanus += "D";
                 quingeni--;
+            }
+            return numerus_romanus;
+        }
+
+        internal static string Adde_Centi(string numerus_romanus, int centum)
+        {
+            while (centum > 0)
+            {
+                numerus_romanus += "C";
+                centum--;
             }
             return numerus_romanus;
         }
