@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ClassisRomana.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simplificator.cs" />
     <Compile Include="Translator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

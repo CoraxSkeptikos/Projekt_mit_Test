@@ -15,17 +15,16 @@ namespace BibliothecaExperimentorum
         [Test, Category ("1")]
         public void Experimentum_Primum()
         {
-            Assert.AreEqual("MMDCCCCXIIII", ClassisRomana.Initium(2914));
-            Assert.AreEqual("MDCLXV", ClassisRomana.Initium(1665));
-            Assert.AreEqual("MDCXXXVIII", ClassisRomana.Initium(1638));
-            Assert.AreEqual("MMCCCXXXVI", ClassisRomana.Initium(2336));
-            Assert.AreEqual("MMDCCXXXIIII", ClassisRomana.Initium(2734));
-            Assert.AreEqual("MCCLIIII", ClassisRomana.Initium(1254));
-            Assert.AreEqual("MMCCCVI", ClassisRomana.Initium(2306));
-            Assert.AreEqual("MLXXV", ClassisRomana.Initium(1075));
-            Assert.AreEqual("DCCCCXXXXIII", ClassisRomana.Initium(943));
-            Assert.AreEqual("CXV", ClassisRomana.Initium(115));
-
+            Assert.AreEqual("MMCXIII", ClassisRomana.Initium(2113));
+            Assert.AreEqual("MMDXXVII", ClassisRomana.Initium(2527));
+            Assert.AreEqual("DLIII", ClassisRomana.Initium(553));
+            Assert.AreEqual("CIX", ClassisRomana.Initium(109));
+            Assert.AreEqual("MMCMVLII", ClassisRomana.Initium(2947));
+            Assert.AreEqual("VL", ClassisRomana.Initium(45));
+            Assert.AreEqual("MVDII", ClassisRomana.Initium(1497));
+            Assert.AreEqual("MMXDII", ClassisRomana.Initium(2492));
+            Assert.AreEqual("LDXXI", ClassisRomana.Initium(471));
+            Assert.AreEqual("CXLIII", ClassisRomana.Initium(143));
         }
     }
 }

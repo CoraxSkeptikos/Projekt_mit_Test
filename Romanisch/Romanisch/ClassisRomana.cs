@@ -36,6 +36,8 @@ namespace Romanisch
             numerus_romanus = Translator.Adde_Quinquo(numerus_romanus, quinque);
             numerus_romanus = Translator.Adde_Una(numerus_romanus, numerus_barbarus);
 
+            numerus_romanus = Simplificator.Unicum(numerus_romanus);
+
             return numerus_romanus;
         }
     }
