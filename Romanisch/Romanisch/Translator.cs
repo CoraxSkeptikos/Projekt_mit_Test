@@ -14,19 +14,43 @@ namespace Romanisch
             return mille;
         }
 
-        internal static int Subtrahe(int numerus_barbarus, int subtrahend)
+        internal static int Modulo_Mili(int numerus_barbarus)
         {
-            numerus_barbarus -= subtrahend;
+            numerus_barbarus %= 1000;
             return numerus_barbarus;
         }
 
-        internal static string Adde_Milli(int mille)
+        internal static string Adde_Mili(int mille)
         {
             string numerus_romanus = "";
             while (mille > 0)
             {
                 numerus_romanus += "M";
                 mille--;
+            }
+            return numerus_romanus;
+        }
+
+
+
+        internal static int Divide_Quingeno(int numerus_barbarus)
+        {
+            int quingeni = numerus_barbarus / 500;
+            return quingeni;
+        }
+
+        internal static int Modulo_Quingeni(int numerus_barbarus)
+        {
+            numerus_barbarus %= 500;
+            return numerus_barbarus;
+        }
+
+        internal static string Adde_Quingeno(string numerus_romanus, int quingeni)
+        {
+            while (quingeni > 0)
+            {
+                numerus_romanus += "D";
+                quingeni--;
             }
             return numerus_romanus;
         }

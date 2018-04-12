@@ -17,8 +17,12 @@ namespace BibliothecaExperimentorum
         {
             Assert.AreEqual("M", ClassisRomana.Initium(1000));
             Assert.AreEqual("MM", ClassisRomana.Initium(2000));
-            Assert.AreEqual("MMM", ClassisRomana.Initium(3745));
+            Assert.AreEqual("MMMD", ClassisRomana.Initium(3745));
             Assert.AreEqual("", ClassisRomana.Initium(100));
+            Assert.AreEqual("D", ClassisRomana.Initium(500));
+            Assert.AreEqual("D", ClassisRomana.Initium(600));
+            Assert.AreEqual("D", ClassisRomana.Initium(708));
+
         }
     }
 }

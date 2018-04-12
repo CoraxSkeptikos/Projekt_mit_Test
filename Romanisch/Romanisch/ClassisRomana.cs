@@ -11,10 +11,14 @@ namespace Romanisch
         public static string Initium(int numerus_barbarus)
         {
             var mille = Translator.Divide_Mili(numerus_barbarus);
-            numerus_barbarus = Translator.Subtrahe(numerus_barbarus, mille);
-            var numerus_romanus = Translator.Adde_Milli(mille);
+            numerus_barbarus = Translator.Modulo_Mili(numerus_barbarus);
+            var numerus_romanus = Translator.Adde_Mili(mille);
+
+            var quingeni = Translator.Divide_Quingeno(numerus_barbarus);
+            numerus_barbarus = Translator.Modulo_Quingeni(numerus_barbarus);
+            numerus_romanus = Translator.Adde_Quingeno(numerus_romanus, quingeni);
+
             return numerus_romanus;
-            
         }
     }
 }
