@@ -15,8 +15,15 @@ namespace Kalender
             {
                 if (Console.ReadLine().Contains("cal"))
                 {
-                    Kalenderhintergrund.Starte_Kalender().ForEach(Console.WriteLine);
+                    Schreibe_Kalender();
                 }
+            }
+        }
+        internal static void Schreibe_Kalender()
+        {
+            foreach (var item in Kalenderhintergrund.Starte_Kalender())
+            {
+                Console.WriteLine(item);
             }
         }
     }
