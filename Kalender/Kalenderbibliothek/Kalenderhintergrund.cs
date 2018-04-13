@@ -16,7 +16,10 @@ namespace Kalenderbibliothek
 
             ausgabe[0] = Schreibe_Überschrift(datum, monate);
             ausgabe[1] = ("Mo Di Mi Do Fr Sa So");
-            ausgabe[2] = (" 1  2  3  4  5  6  7");
+
+            var tage = Schreibe_Erste_Zeile_Tage(datum);
+            ausgabe[2] = Array_Zu_String_zusammenführen(tage);
+
             ausgabe[3] = (" 8  9 10 11 12 13 14");
             ausgabe[4] = ("15 16 17 18 19 20 21");
             ausgabe[5] = ("22 23 24 25 26 27 28");
@@ -39,6 +42,101 @@ namespace Kalenderbibliothek
         {
             string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "September", "Oktober", "November", "Dezember" };
             return monate;
+        }
+
+        internal static string[] Schreibe_Erste_Zeile_Tage(DateTime datum)
+        {
+            var tage = new string[7];
+
+            var ersttag = new DateTime(datum.Year, datum.Month, 1);
+
+            tage[0] = " 1 ";
+            tage[1] = " 2 ";
+            tage[2] = " 3 ";
+            tage[3] = " 4 ";
+            tage[4] = " 5 ";
+            tage[5] = " 6 ";
+            tage[6] = " 7 ";
+
+            switch (ersttag.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    tage[0] = "   ";
+                    tage[1] = "   ";
+                    tage[2] = "   ";
+                    tage[3] = "   ";
+                    tage[4] = "   ";
+                    tage[5] = "   ";
+                    tage[6] = " 1 ";
+                    break;
+                case DayOfWeek.Monday:
+                    tage[0] = " 1 ";
+                    tage[1] = " 2 ";
+                    tage[2] = " 3 ";
+                    tage[3] = " 4 ";
+                    tage[4] = " 5 ";
+                    tage[5] = " 6 ";
+                    tage[6] = " 7 ";
+                    break;
+                case DayOfWeek.Tuesday:
+                    tage[0] = "   ";
+                    tage[1] = " 1 ";
+                    tage[2] = " 2 ";
+                    tage[3] = " 3 ";
+                    tage[4] = " 4 ";
+                    tage[5] = " 5 ";
+                    tage[6] = " 6 ";
+                    break;
+                case DayOfWeek.Wednesday:
+                    tage[0] = "   ";
+                    tage[1] = "   ";
+                    tage[2] = " 1 ";
+                    tage[3] = " 2 ";
+                    tage[4] = " 3 ";
+                    tage[5] = " 4 ";
+                    tage[6] = " 5 ";
+                    break;
+                case DayOfWeek.Thursday:
+                    tage[0] = "   ";
+                    tage[1] = "   ";
+                    tage[2] = "   ";
+                    tage[3] = " 1 ";
+                    tage[4] = " 2 ";
+                    tage[5] = " 3 ";
+                    tage[6] = " 4 ";
+                    break;
+                case DayOfWeek.Friday:
+                    tage[0] = "   ";
+                    tage[1] = "   ";
+                    tage[2] = "   ";
+                    tage[3] = "   ";
+                    tage[4] = " 1 ";
+                    tage[5] = " 2 ";
+                    tage[6] = " 3 ";
+                    break;
+                case DayOfWeek.Saturday:
+                    tage[0] = "   ";
+                    tage[1] = "   ";
+                    tage[2] = "   ";
+                    tage[3] = "   ";
+                    tage[4] = "   ";
+                    tage[5] = " 1 ";
+                    tage[6] = " 2 ";
+                    break;
+                default:
+                    break;
+            }
+
+            return tage;
+        }
+        internal static string Array_Zu_String_zusammenführen(string[] tage)
+        {
+            string zeile = "";
+            foreach (var item in tage)
+            {
+                zeile += item;
+            }
+            return zeile;
         }
     }
 }
