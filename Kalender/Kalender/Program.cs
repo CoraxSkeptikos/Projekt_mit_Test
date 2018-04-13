@@ -15,16 +15,23 @@ namespace Kalender
             {
                 if (Console.ReadLine().Contains("cal"))
                 {
-                    Schreibe_Kalender();
+                    var datum = Definiere_Datum();
+                    Schreibe_Kalender(datum);
                 }
             }
         }
-        internal static void Schreibe_Kalender()
+        internal static void Schreibe_Kalender(DateTime datum)
         {
-            foreach (var item in Kalenderhintergrund.Starte_Kalender())
+            foreach (var item in Kalenderhintergrund.Starte_Kalender(datum))
             {
                 Console.WriteLine(item);
             }
+        }
+
+        internal static DateTime Definiere_Datum()
+        {
+            DateTime datum = DateTime.Now;
+            return datum;
         }
     }
 }

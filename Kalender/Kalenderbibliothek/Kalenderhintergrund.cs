@@ -8,12 +8,14 @@ namespace Kalenderbibliothek
 {
     public class Kalenderhintergrund
     {
-        public static string[] Starte_Kalender()
+        public static string[] Starte_Kalender(DateTime datum)
         {
+            var monate = Erstelle_Monatsliste();
+
             var ausgabe = new string[7];
 
-            ausgabe[0] = Schreibe_Überschrift();
-            ausgabe[1] = ("So Mo Di Mi Do Fr Sa");
+            ausgabe[0] = Schreibe_Überschrift(datum, monate);
+            ausgabe[1] = ("Mo Di Mi Do Fr Sa So");
             ausgabe[2] = (" 1  2  3  4  5  6  7");
             ausgabe[3] = (" 8  9 10 11 12 13 14");
             ausgabe[4] = ("15 16 17 18 19 20 21");
@@ -23,16 +25,20 @@ namespace Kalenderbibliothek
             return ausgabe;
         }
 
-        internal static string Schreibe_Überschrift()
+        internal static string Schreibe_Überschrift(DateTime datum, string[] monate)
         {
-            DateTime heute = DateTime.Now;
-            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "September", "Oktober", "November", "Dezember" };
             string überschrift = "     ";
-            überschrift += monate[heute.Month - 1];
+            überschrift += monate[datum.Month - 1];
             überschrift += " ";
-            überschrift += heute.Year;
+            überschrift += datum.Year;
             überschrift += "     ";
             return überschrift;
+        }
+
+        internal static string[] Erstelle_Monatsliste()
+        {
+            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "September", "Oktober", "November", "Dezember" };
+            return monate;
         }
     }
 }
