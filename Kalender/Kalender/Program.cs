@@ -11,15 +11,24 @@ namespace Kalender
     {
         static void Main(string[] args)
         {
-            Funktionsname();
+            Startfunktion();
         }
 
-        internal static void Funktionsname()
+        internal static void Startfunktion()
         {
             var eingabe = Eingabeauswertung();
             var datum = Definiere_Datum();
             Schreibe_Kalender(datum, eingabe);
-            Funktionsname();
+            Klier(eingabe);
+            Startfunktion();
+        }
+
+        internal static void Klier(string eingabe)
+        {
+            if (eingabe == "exit")
+            {
+                Environment.Exit(0);
+            }
         }
 
         internal static void Schreibe_Kalender(DateTime datum, string eingabe)
@@ -41,18 +50,18 @@ namespace Kalender
 
         internal static string Eingabeauswertung()
         {
-            string eingabe;
-            while (true)
+            string eingabe = Console.ReadLine();
+            if (eingabe.Contains("exit"))
             {
-                eingabe = Console.ReadLine();
-                if (eingabe.Contains("exit"))
-                {
-                    return "exit";
-                }
-                else if (eingabe.Contains("cal"))
-                {
-                    return "cal";
-                }
+                return "exit";
+            }
+            else if (eingabe.Contains("cal"))
+            {
+                return "cal";
+            }
+            else
+            {
+                return "";
             }
         }
     }
