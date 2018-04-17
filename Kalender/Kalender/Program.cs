@@ -11,20 +11,25 @@ namespace Kalender
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                if (Console.ReadLine().Contains("cal"))
-                {
-                    var datum = Definiere_Datum();
-                    Schreibe_Kalender(datum);
-                }
-            }
+            Funktionsname();
         }
-        internal static void Schreibe_Kalender(DateTime datum)
+
+        internal static void Funktionsname()
         {
-            foreach (var item in Kalenderhintergrund.Starte_Kalender(datum))
+            var eingabe = Eingabeauswertung();
+            var datum = Definiere_Datum();
+            Schreibe_Kalender(datum, eingabe);
+            Funktionsname();
+        }
+
+        internal static void Schreibe_Kalender(DateTime datum, string eingabe)
+        {
+            if (eingabe == "cal")
             {
-                Console.WriteLine(item);
+                foreach (var item in Kalenderhintergrund.Starte_Kalender(datum))
+                {
+                    Console.WriteLine(item);
+                }
             }
         }
 
@@ -32,6 +37,23 @@ namespace Kalender
         {
             DateTime datum = DateTime.Now;
             return datum;
+        }
+
+        internal static string Eingabeauswertung()
+        {
+            string eingabe;
+            while (true)
+            {
+                eingabe = Console.ReadLine();
+                if (eingabe.Contains("exit"))
+                {
+                    return "exit";
+                }
+                else if (eingabe.Contains("cal"))
+                {
+                    return "cal";
+                }
+            }
         }
     }
 }
