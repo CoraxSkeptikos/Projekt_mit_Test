@@ -12,7 +12,7 @@ namespace Kalenderbibliothek
         {
             var monate = Erstelle_Monatsliste();
 
-            var ausgabe = new string[7];
+            var ausgabe = new string[8];
 
             ausgabe[0] = Schreibe_Überschrift(datum, monate);
             ausgabe[1] = ("Mo Di Mi Do Fr Sa So");
@@ -20,12 +20,20 @@ namespace Kalenderbibliothek
             var tage = Schreibe_Erste_Zeile_Tage(datum);
             ausgabe[2] = Array_Zu_String_zusammenführen(tage);
 
-            tage = Schreibe_Zweite_Zeile_Tage(tage);
+            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
             ausgabe[3] = Array_Zu_String_zusammenführen(tage);
 
-            ausgabe[4] = ("15 16 17 18 19 20 21");
-            ausgabe[5] = ("22 23 24 25 26 27 28");
-            ausgabe[6] = ("29 30               ");
+            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
+            ausgabe[4] = Array_Zu_String_zusammenführen(tage);
+
+            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
+            ausgabe[5] = Array_Zu_String_zusammenführen(tage);
+
+            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
+            ausgabe[6] = Array_Zu_String_zusammenführen(tage);
+
+            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
+            ausgabe[7] = Array_Zu_String_zusammenführen(tage);
 
             return ausgabe;
         }
@@ -133,7 +141,7 @@ namespace Kalenderbibliothek
             return zeile;
         }
 
-        internal static string [] Schreibe_Zweite_Zeile_Tage(string[] tage)
+        internal static string [] Schreibe_Zweite_Zeile_Tage(string[] tage, DateTime datum)
         {
             int letztertag = Convert.ToInt32(tage[6].Trim());
 
@@ -148,7 +156,14 @@ namespace Kalenderbibliothek
                 {
                     tage[i] = "";
                 }
-                tage[i] += Convert.ToString(letztertag);
+                if (letztertag <= DateTime.DaysInMonth(datum.Year, datum.Month))
+                {
+                    tage[i] += Convert.ToString(letztertag);
+                }
+                else
+                {
+                    tage[i] += "  ";
+                }
                 tage[i] += " ";
             }
 
