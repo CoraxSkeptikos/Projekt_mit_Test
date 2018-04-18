@@ -143,28 +143,38 @@ namespace Kalenderbibliothek
 
         internal static string [] Schreibe_Zweite_Zeile_Tage(string[] tage, DateTime datum)
         {
-            int letztertag = Convert.ToInt32(tage[6].Trim());
-
-            for (int i = 0; i < tage.Length; i++)
+            try
             {
-                letztertag++;
-                if (letztertag < 10)
+                int letztertag = Convert.ToInt32(tage[6].Trim());
+
+                for (int i = 0; i < tage.Length; i++)
                 {
-                    tage[i] = " ";
+                    letztertag++;
+                    if (letztertag < 10)
+                    {
+                        tage[i] = " ";
+                    }
+                    else
+                    {
+                        tage[i] = "";
+                    }
+                    if (letztertag <= DateTime.DaysInMonth(datum.Year, datum.Month))
+                    {
+                        tage[i] += Convert.ToString(letztertag);
+                    }
+                    else
+                    {
+                        tage[i] += "  ";
+                    }
+                    tage[i] += " ";
                 }
-                else
+            }
+            catch
+            {
+                for (int i = 0; i < tage.Length; i++)
                 {
-                    tage[i] = "";
+                    tage[i] = "   ";
                 }
-                if (letztertag <= DateTime.DaysInMonth(datum.Year, datum.Month))
-                {
-                    tage[i] += Convert.ToString(letztertag);
-                }
-                else
-                {
-                    tage[i] += "  ";
-                }
-                tage[i] += " ";
             }
 
             return tage;

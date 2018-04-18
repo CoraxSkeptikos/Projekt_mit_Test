@@ -18,7 +18,7 @@ namespace Kalender
         {
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
-            var datum = Definiere_Datum();
+            var datum = Definiere_Datum(eingabe);
             var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum);
             Schreibe_Kalender(kalenderblatt, befehl);
             Schließen(befehl);
@@ -41,9 +41,23 @@ namespace Kalender
             }
         }
 
-        internal static DateTime Definiere_Datum()
+        internal static DateTime Definiere_Datum(string eingabe)
         {
-            DateTime datum = DateTime.Now;
+            DateTime datum;
+            try
+            {
+                string sub = eingabe.Substring(eingabe.IndexOf("cal")+4);
+                //Console.WriteLine(sub);
+                string monat = sub.Substring(0, sub.IndexOf(" "));
+                //Console.WriteLine(monat);
+                string jahr = sub.Substring(sub.IndexOf(" ") + 1);
+                //Console.WriteLine(jahr);
+                datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
+            }
+            catch (Exception)
+            {
+                datum = DateTime.Now;
+            }
             return datum;
         }
 
