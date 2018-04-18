@@ -18,7 +18,7 @@ namespace Kalender
         {
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
-            var datum = Definiere_Datum(eingabe);
+            var datum = Definiere_Datum1(eingabe);
             var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum);
             Schreibe_Kalender(kalenderblatt, befehl);
             Schließen(befehl);
@@ -41,23 +41,44 @@ namespace Kalender
             }
         }
 
-        internal static DateTime Definiere_Datum(string eingabe)
+        internal static DateTime Definiere_Datum1(string eingabe)
         {
             DateTime datum;
             try
             {
-                string sub = eingabe.Substring(eingabe.IndexOf("cal")+4);
-                //Console.WriteLine(sub);
-                string monat = sub.Substring(0, sub.IndexOf(" "));
-                //Console.WriteLine(monat);
-                string jahr = sub.Substring(sub.IndexOf(" ") + 1);
-                //Console.WriteLine(jahr);
-                datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
+                var sub = Erstelle_Substring(eingabe);
+                var monat = Monatsangabe(sub);
+                var jahr = Jahresangabe(sub);
+                datum = Definiere_Datum2(jahr, monat);
             }
-            catch (Exception)
+            catch
             {
                 datum = DateTime.Now;
             }
+            return datum;
+        }
+
+        internal static string Erstelle_Substring(string eingabe)
+        {
+            string sub = eingabe.Substring(eingabe.IndexOf("cal") + 4);
+            return sub;
+        }
+
+        internal static int Monatsangabe(string sub)
+        {
+            string monat = sub.Substring(0, sub.IndexOf(" "));
+            return Convert.ToInt32(monat);
+        }
+
+        internal static int Jahresangabe(string sub)
+        {
+            string jahr = sub.Substring(sub.IndexOf(" ") + 1);
+            return Convert.ToInt32(jahr);
+        }
+
+        internal static DateTime Definiere_Datum2(int jahr, int monat)
+        {
+            DateTime datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
             return datum;
         }
 
