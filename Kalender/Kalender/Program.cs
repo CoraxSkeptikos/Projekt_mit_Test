@@ -16,41 +16,17 @@ namespace Kalender
 
         internal static void Startfunktion()
         {
-            var eingabe = Eingabeauswertung();
+            string eingabe = Console.ReadLine();
+            var befehl = Eingabeauswertung(eingabe);
             var datum = Definiere_Datum();
-            Schreibe_Kalender(datum, eingabe);
-            Klier(eingabe);
+            var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum);
+            Schreibe_Kalender(kalenderblatt, befehl);
+            Schließen(befehl);
             Startfunktion();
         }
 
-        internal static void Klier(string eingabe)
+        internal static string Eingabeauswertung(string eingabe)
         {
-            if (eingabe == "exit")
-            {
-                Environment.Exit(0);
-            }
-        }
-
-        internal static void Schreibe_Kalender(DateTime datum, string eingabe)
-        {
-            if (eingabe == "cal")
-            {
-                foreach (var item in Kalenderhintergrund.Starte_Kalender(datum))
-                {
-                    Console.WriteLine(item);
-                }
-            }
-        }
-
-        internal static DateTime Definiere_Datum()
-        {
-            DateTime datum = DateTime.Now;
-            return datum;
-        }
-
-        internal static string Eingabeauswertung()
-        {
-            string eingabe = Console.ReadLine();
             if (eingabe.Contains("exit"))
             {
                 return "exit";
@@ -62,6 +38,31 @@ namespace Kalender
             else
             {
                 return "";
+            }
+        }
+
+        internal static DateTime Definiere_Datum()
+        {
+            DateTime datum = DateTime.Now;
+            return datum;
+        }
+
+        internal static void Schreibe_Kalender(string[] kalenderblatt, string befehl)
+        {
+            if (befehl == "cal")
+            {
+                foreach (var item in kalenderblatt)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+
+        internal static void Schließen(string befehl)
+        {
+            if (befehl == "exit")
+            {
+                Environment.Exit(0);
             }
         }
     }
