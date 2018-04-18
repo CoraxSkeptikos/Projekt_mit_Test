@@ -18,7 +18,7 @@ namespace Kalender
         {
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
-            var datum = Definiere_Datum1(eingabe);
+            var datum = Definiere_Datum_Vorbereitung(eingabe);
             var wochentag = Definiere_Wochentag(eingabe);
             var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum, wochentag);
             Schreibe_Kalender(kalenderblatt, befehl);
@@ -42,7 +42,7 @@ namespace Kalender
             }
         }
 
-        internal static DateTime Definiere_Datum1(string eingabe)
+        internal static DateTime Definiere_Datum_Vorbereitung(string eingabe)
         {
             DateTime datum;
             try
@@ -50,7 +50,7 @@ namespace Kalender
                 var sub = Erstelle_Substring(eingabe);
                 var monat = Monatsangabe(sub);
                 var jahr = Jahresangabe(sub);
-                datum = Definiere_Datum2(jahr, monat);
+                datum = Definiere_Datum_Untergeordnete_Funktion(jahr, monat);
             }
             catch
             {
@@ -81,7 +81,7 @@ namespace Kalender
             return Convert.ToInt32(jahr);
         }
 
-        internal static DateTime Definiere_Datum2(int jahr, int monat)
+        internal static DateTime Definiere_Datum_Untergeordnete_Funktion(int jahr, int monat)
         {
             DateTime datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
             return datum;

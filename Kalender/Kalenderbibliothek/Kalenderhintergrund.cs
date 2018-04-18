@@ -17,7 +17,7 @@ namespace Kalenderbibliothek
             ausgabe[0] = Schreibe_Überschrift(datum, monate);
             ausgabe[1] = Schreibe_Wochentage(wochentag);
 
-            var tage = Schreibe_Erste_Zeile_Tage(datum);
+            var tage = Schreibe_Erste_Zeile_Tage(datum, wochentag);
             ausgabe[2] = Array_Zu_String_zusammenführen(tage);
 
             tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
@@ -70,76 +70,293 @@ namespace Kalenderbibliothek
             return monate;
         }
 
-        internal static string[] Schreibe_Erste_Zeile_Tage(DateTime datum)
+        internal static string[] Schreibe_Erste_Zeile_Tage(DateTime datum, string starttag)
         {
             var tage = new string[7];
 
             var ersttag = new DateTime(datum.Year, datum.Month, 1);
 
-            switch (ersttag.DayOfWeek)
+            switch (starttag)
             {
-                case DayOfWeek.Sunday:
-                    tage[0] = "   ";
-                    tage[1] = "   ";
-                    tage[2] = "   ";
-                    tage[3] = "   ";
-                    tage[4] = "   ";
-                    tage[5] = "   ";
-                    tage[6] = " 1 ";
+                case "Montag":
+                    switch (ersttag.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = "   ";
+                            tage[6] = " 1 ";
+                            break;
+                        case DayOfWeek.Monday:
+                            tage[0] = " 1 ";
+                            tage[1] = " 2 ";
+                            tage[2] = " 3 ";
+                            tage[3] = " 4 ";
+                            tage[4] = " 5 ";
+                            tage[5] = " 6 ";
+                            tage[6] = " 7 ";
+                            break;
+                        case DayOfWeek.Tuesday:
+                            tage[0] = "   ";
+                            tage[1] = " 1 ";
+                            tage[2] = " 2 ";
+                            tage[3] = " 3 ";
+                            tage[4] = " 4 ";
+                            tage[5] = " 5 ";
+                            tage[6] = " 6 ";
+                            break;
+                        case DayOfWeek.Wednesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = " 1 ";
+                            tage[3] = " 2 ";
+                            tage[4] = " 3 ";
+                            tage[5] = " 4 ";
+                            tage[6] = " 5 ";
+                            break;
+                        case DayOfWeek.Thursday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = " 1 ";
+                            tage[4] = " 2 ";
+                            tage[5] = " 3 ";
+                            tage[6] = " 4 ";
+                            break;
+                        case DayOfWeek.Friday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = " 1 ";
+                            tage[5] = " 2 ";
+                            tage[6] = " 3 ";
+                            break;
+                        case DayOfWeek.Saturday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = " 1 ";
+                            tage[6] = " 2 ";
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case DayOfWeek.Monday:
-                    tage[0] = " 1 ";
-                    tage[1] = " 2 ";
-                    tage[2] = " 3 ";
-                    tage[3] = " 4 ";
-                    tage[4] = " 5 ";
-                    tage[5] = " 6 ";
-                    tage[6] = " 7 ";
+                case "Freitag":
+                    switch (ersttag.DayOfWeek)
+                    {
+                        case DayOfWeek.Friday:
+                            tage[0] = " 1 ";
+                            tage[1] = " 2 ";
+                            tage[2] = " 3 ";
+                            tage[3] = " 4 ";
+                            tage[4] = " 5 ";
+                            tage[5] = " 6 ";
+                            tage[6] = " 7 ";
+                            break;
+                        case DayOfWeek.Saturday:
+                            tage[0] = "   ";
+                            tage[1] = " 1 ";
+                            tage[2] = " 2 ";
+                            tage[3] = " 3 ";
+                            tage[4] = " 4 ";
+                            tage[5] = " 5 ";
+                            tage[6] = " 6 ";
+                            break;
+                        case DayOfWeek.Sunday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = " 1 ";
+                            tage[3] = " 2 ";
+                            tage[4] = " 3 ";
+                            tage[5] = " 4 ";
+                            tage[6] = " 5 ";
+                            break;
+                        case DayOfWeek.Monday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = " 1 ";
+                            tage[4] = " 2 ";
+                            tage[5] = " 3 ";
+                            tage[6] = " 4 ";
+                            break;
+                        case DayOfWeek.Tuesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = " 1 ";
+                            tage[5] = " 2 ";
+                            tage[6] = " 3 ";
+                            break;
+                        case DayOfWeek.Wednesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = " 1 ";
+                            tage[6] = " 2 ";
+                            break;
+                        case DayOfWeek.Thursday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = "   ";
+                            tage[6] = " 1 ";
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case DayOfWeek.Tuesday:
-                    tage[0] = "   ";
-                    tage[1] = " 1 ";
-                    tage[2] = " 2 ";
-                    tage[3] = " 3 ";
-                    tage[4] = " 4 ";
-                    tage[5] = " 5 ";
-                    tage[6] = " 6 ";
+                case "Samstag":
+                    switch (ersttag.DayOfWeek)
+                    {
+                        case DayOfWeek.Saturday:
+                            tage[0] = " 1 ";
+                            tage[1] = " 2 ";
+                            tage[2] = " 3 ";
+                            tage[3] = " 4 ";
+                            tage[4] = " 5 ";
+                            tage[5] = " 6 ";
+                            tage[6] = " 7 ";
+                            break;
+                        case DayOfWeek.Sunday:
+                            tage[0] = "   ";
+                            tage[1] = " 1 ";
+                            tage[2] = " 2 ";
+                            tage[3] = " 3 ";
+                            tage[4] = " 4 ";
+                            tage[5] = " 5 ";
+                            tage[6] = " 6 ";
+                            break;
+                        case DayOfWeek.Monday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = " 1 ";
+                            tage[3] = " 2 ";
+                            tage[4] = " 3 ";
+                            tage[5] = " 4 ";
+                            tage[6] = " 5 ";
+                            break;
+                        case DayOfWeek.Tuesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = " 1 ";
+                            tage[4] = " 2 ";
+                            tage[5] = " 3 ";
+                            tage[6] = " 4 ";
+                            break;
+                        case DayOfWeek.Wednesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = " 1 ";
+                            tage[5] = " 2 ";
+                            tage[6] = " 3 ";
+                            break;
+                        case DayOfWeek.Thursday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = " 1 ";
+                            tage[6] = " 2 ";
+                            break;
+                        case DayOfWeek.Friday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = "   ";
+                            tage[6] = " 1 ";
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                case DayOfWeek.Wednesday:
-                    tage[0] = "   ";
-                    tage[1] = "   ";
-                    tage[2] = " 1 ";
-                    tage[3] = " 2 ";
-                    tage[4] = " 3 ";
-                    tage[5] = " 4 ";
-                    tage[6] = " 5 ";
-                    break;
-                case DayOfWeek.Thursday:
-                    tage[0] = "   ";
-                    tage[1] = "   ";
-                    tage[2] = "   ";
-                    tage[3] = " 1 ";
-                    tage[4] = " 2 ";
-                    tage[5] = " 3 ";
-                    tage[6] = " 4 ";
-                    break;
-                case DayOfWeek.Friday:
-                    tage[0] = "   ";
-                    tage[1] = "   ";
-                    tage[2] = "   ";
-                    tage[3] = "   ";
-                    tage[4] = " 1 ";
-                    tage[5] = " 2 ";
-                    tage[6] = " 3 ";
-                    break;
-                case DayOfWeek.Saturday:
-                    tage[0] = "   ";
-                    tage[1] = "   ";
-                    tage[2] = "   ";
-                    tage[3] = "   ";
-                    tage[4] = "   ";
-                    tage[5] = " 1 ";
-                    tage[6] = " 2 ";
+                case "Sonntag":
+                    switch (ersttag.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            tage[0] = " 1 ";
+                            tage[1] = " 2 ";
+                            tage[2] = " 3 ";
+                            tage[3] = " 4 ";
+                            tage[4] = " 5 ";
+                            tage[5] = " 6 ";
+                            tage[6] = " 7 ";
+                            break;
+                        case DayOfWeek.Monday:
+                            tage[0] = "   ";
+                            tage[1] = " 1 ";
+                            tage[2] = " 2 ";
+                            tage[3] = " 3 ";
+                            tage[4] = " 4 ";
+                            tage[5] = " 5 ";
+                            tage[6] = " 6 ";
+                            break;
+                        case DayOfWeek.Tuesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = " 1 ";
+                            tage[3] = " 2 ";
+                            tage[4] = " 3 ";
+                            tage[5] = " 4 ";
+                            tage[6] = " 5 ";
+                            break;
+                        case DayOfWeek.Wednesday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = " 1 ";
+                            tage[4] = " 2 ";
+                            tage[5] = " 3 ";
+                            tage[6] = " 4 ";
+                            break;
+                        case DayOfWeek.Thursday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = " 1 ";
+                            tage[5] = " 2 ";
+                            tage[6] = " 3 ";
+                            break;
+                        case DayOfWeek.Friday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = " 1 ";
+                            tage[6] = " 2 ";
+                            break;
+                        case DayOfWeek.Saturday:
+                            tage[0] = "   ";
+                            tage[1] = "   ";
+                            tage[2] = "   ";
+                            tage[3] = "   ";
+                            tage[4] = "   ";
+                            tage[5] = "   ";
+                            tage[6] = " 1 ";
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     break;
