@@ -8,14 +8,14 @@ namespace Kalenderbibliothek
 {
     public class Kalenderhintergrund
     {
-        public static string[] Starte_Kalender(DateTime datum)
+        public static string[] Starte_Kalender(DateTime datum, string wochentag)
         {
             var monate = Erstelle_Monatsliste();
 
             var ausgabe = new string[8];
 
             ausgabe[0] = Schreibe_Überschrift(datum, monate);
-            ausgabe[1] = ("Mo Di Mi Do Fr Sa So");
+            ausgabe[1] = Schreibe_Wochentage(wochentag);
 
             var tage = Schreibe_Erste_Zeile_Tage(datum);
             ausgabe[2] = Array_Zu_String_zusammenführen(tage);
@@ -46,6 +46,22 @@ namespace Kalenderbibliothek
             überschrift += datum.Year;
             überschrift += "     ";
             return überschrift;
+        }
+
+        internal static string Schreibe_Wochentage(string starttag)
+        {
+            switch (starttag)
+            {
+                case "Freitag":
+                    return "Fr Sa So Mo Di Mi Do";
+                case "Samstag":
+                    return "Sa So Mo Di Mi Do Fr";
+                case "Sonntag":
+                    return "So Mo Di Mi Do Fr Sa";
+                case "Montag":
+                default:
+                    return "Mo Di Mi Do Fr Sa So";
+            }
         }
 
         internal static string[] Erstelle_Monatsliste()

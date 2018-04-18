@@ -19,7 +19,8 @@ namespace Kalender
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
             var datum = Definiere_Datum1(eingabe);
-            var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum);
+            var wochentag = Definiere_Wochentag(eingabe);
+            var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum, wochentag);
             Schreibe_Kalender(kalenderblatt, befehl);
             Schließen(befehl);
             Startfunktion();
@@ -73,6 +74,10 @@ namespace Kalender
         internal static int Jahresangabe(string sub)
         {
             string jahr = sub.Substring(sub.IndexOf(" ") + 1);
+            if (jahr.Contains(" "))
+            {
+                jahr = jahr.Substring(0, jahr.IndexOf(" "));
+            }
             return Convert.ToInt32(jahr);
         }
 
@@ -80,6 +85,26 @@ namespace Kalender
         {
             DateTime datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
             return datum;
+        }
+
+        internal static string Definiere_Wochentag(string eingabe)
+        {
+            if (eingabe.Contains("Sonntag"))
+            {
+                return "Sonntag";
+            }
+            else if (eingabe.Contains("Samstag"))
+            {
+                return "Samstag";
+            }
+            else if (eingabe.Contains("Freitag"))
+            {
+                return "Freitag";
+            }
+            else
+            {
+                return "Montag";
+            }
         }
 
         internal static void Schreibe_Kalender(string[] kalenderblatt, string befehl)
