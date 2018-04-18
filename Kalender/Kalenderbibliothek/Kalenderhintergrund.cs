@@ -66,7 +66,7 @@ namespace Kalenderbibliothek
 
         internal static string[] Erstelle_Monatsliste()
         {
-            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "September", "Oktober", "November", "Dezember" };
+            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
             return monate;
         }
 
