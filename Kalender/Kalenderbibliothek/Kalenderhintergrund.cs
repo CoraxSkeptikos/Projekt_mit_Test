@@ -20,7 +20,9 @@ namespace Kalenderbibliothek
             var tage = Schreibe_Erste_Zeile_Tage(datum);
             ausgabe[2] = Array_Zu_String_zusammenführen(tage);
 
-            ausgabe[3] = (" 8  9 10 11 12 13 14");
+            tage = Schreibe_Zweite_Zeile_Tage(tage);
+            ausgabe[3] = Array_Zu_String_zusammenführen(tage);
+
             ausgabe[4] = ("15 16 17 18 19 20 21");
             ausgabe[5] = ("22 23 24 25 26 27 28");
             ausgabe[6] = ("29 30               ");
@@ -49,14 +51,6 @@ namespace Kalenderbibliothek
             var tage = new string[7];
 
             var ersttag = new DateTime(datum.Year, datum.Month, 1);
-
-            tage[0] = " 1 ";
-            tage[1] = " 2 ";
-            tage[2] = " 3 ";
-            tage[3] = " 4 ";
-            tage[4] = " 5 ";
-            tage[5] = " 6 ";
-            tage[6] = " 7 ";
 
             switch (ersttag.DayOfWeek)
             {
@@ -137,6 +131,28 @@ namespace Kalenderbibliothek
                 zeile += item;
             }
             return zeile;
+        }
+
+        internal static string [] Schreibe_Zweite_Zeile_Tage(string[] tage)
+        {
+            int letztertag = Convert.ToInt32(tage[6].Trim());
+
+            for (int i = 0; i < tage.Length; i++)
+            {
+                letztertag++;
+                if (letztertag < 10)
+                {
+                    tage[i] = " ";
+                }
+                else
+                {
+                    tage[i] = "";
+                }
+                tage[i] += Convert.ToString(letztertag);
+                tage[i] += " ";
+            }
+
+            return tage;
         }
     }
 }
