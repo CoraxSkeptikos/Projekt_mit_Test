@@ -33,20 +33,8 @@ namespace Kalenderbibliothek
             var tage = Erstelle_Erste_Zeile_Tage(datum, erster_tag_der_woche);
             ausgabe[2] = Array_Zu_String_zusammenführen(tage);
 
-            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
-            ausgabe[3] = Array_Zu_String_zusammenführen(tage);
+            ausgabe = Erstelle_Weitere_Zeilen(tage, datum, ausgabe);
 
-            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
-            ausgabe[4] = Array_Zu_String_zusammenführen(tage);
-
-            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
-            ausgabe[5] = Array_Zu_String_zusammenführen(tage);
-
-            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
-            ausgabe[6] = Array_Zu_String_zusammenführen(tage);
-
-            tage = Schreibe_Zweite_Zeile_Tage(tage, datum);
-            ausgabe[7] = Array_Zu_String_zusammenführen(tage);
             return ausgabe;
         }
 
@@ -102,6 +90,7 @@ namespace Kalenderbibliothek
         internal static string[] Erstelle_Erste_Zeile_Tage_Nach_Wochenformat(string[] tage, DateTime erster_tag_des_monats, int erster_tag_der_woche)
         {
             var wochentag_des_ersten_tages_des_monats = Ermittle_Wochentag_Des_Ersten_Tages_Des_Monats(erster_tag_des_monats);
+
             tage = Beginne_Am_Ersten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
             tage = Beginne_Am_Zweiten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
             tage = Beginne_Am_Dritten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
@@ -267,7 +256,18 @@ namespace Kalenderbibliothek
             return zeile;
         }
 
-        internal static string [] Schreibe_Zweite_Zeile_Tage(string[] tage, DateTime datum)
+        internal static string[] Erstelle_Weitere_Zeilen(string[] tage, DateTime datum, string[] ausgabe)
+        {
+            for (int i = 3; i < ausgabe.Length; i++)
+            {
+                tage = Erstelle_Zeile(tage, datum);
+                ausgabe[i] = Array_Zu_String_zusammenführen(tage);
+            }
+
+            return ausgabe;
+        }
+
+        internal static string[] Erstelle_Zeile(string[] tage, DateTime datum)
         {
             try
             {
