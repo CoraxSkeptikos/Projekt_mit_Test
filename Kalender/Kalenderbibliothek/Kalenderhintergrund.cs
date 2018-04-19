@@ -263,24 +263,25 @@ namespace Kalenderbibliothek
             for (int i = 3; i < ausgabe.Length; i++)
             {
                 letztertag = Formatiere_Den_Letzten_Erfassten_Tag_Wieder_Als_Zahl(tage[6]);
-                tage = Erstelle_Zeile(tage, datum, letztertag, monatsende);
+                tage = Erstelle_Zeile(datum, letztertag, monatsende);
                 ausgabe[i] = Array_Zu_String_zusammenführen(tage);
             }
 
             return ausgabe;
         }
 
-        internal static string[] Erstelle_Zeile(string[] tage, DateTime datum, int tag, int monatsende)
+        internal static string[] Erstelle_Zeile(DateTime datum, int tag, int monatsende)
         {
-            for (int i = 0; i < tage.Length; i++)
+            var zeile = new string[7];
+            for (int i = 0; i < 7; i++)
             {
                 tag ++;
-                tage[i] = Führendes_Leerzeichen_Anfügen_Wo_Benötigt(tag);
-                tage[i] += Tageszahl_Anfügen_Wenn_Monatsende_Nicht_Erreicht(tag, monatsende);
-                tage[i] += " ";
+                zeile[i] = Führendes_Leerzeichen_Anfügen_Wo_Benötigt(tag);
+                zeile[i] += Tageszahl_Anfügen_Wenn_Monatsende_Nicht_Erreicht(tag, monatsende);
+                zeile[i] += " ";
             }
 
-            return tage;
+            return zeile;
         }
 
         internal static int Formatiere_Den_Letzten_Erfassten_Tag_Wieder_Als_Zahl(string letzter_erfasster_tag)
