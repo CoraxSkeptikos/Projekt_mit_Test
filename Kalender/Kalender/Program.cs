@@ -18,7 +18,7 @@ namespace Kalender
         {
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
-            var datum = Definiere_Datum_Aus_Eingabe(eingabe);
+            var datum = Definiere_Datum(eingabe);
             var erster_tag_der_woche = Definiere_Ersten_Tag_Der_Woche(eingabe);
             var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum, erster_tag_der_woche);
             Schreibe_Kalender(kalenderblatt, befehl);
@@ -42,7 +42,7 @@ namespace Kalender
             }
         }
 
-        internal static DateTime Definiere_Datum_Aus_Eingabe(string eingabe)
+        internal static DateTime Definiere_Datum(string eingabe)
         {
             DateTime datum;
             try
@@ -100,23 +100,23 @@ namespace Kalender
             return datum;
         }
 
-        internal static string Definiere_Ersten_Tag_Der_Woche(string eingabe)
+        internal static int Definiere_Ersten_Tag_Der_Woche(string eingabe)
         {
             if (eingabe.Contains("Sonntag"))
             {
-                return "Sonntag";
+                return 7;
             }
             else if (eingabe.Contains("Samstag"))
             {
-                return "Samstag";
+                return 6;
             }
             else if (eingabe.Contains("Freitag"))
             {
-                return "Freitag";
+                return 5;
             }
             else
             {
-                return "Montag";
+                return 1;
             }
         }
 
