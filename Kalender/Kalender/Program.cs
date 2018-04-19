@@ -11,19 +11,19 @@ namespace Kalender
     {
         static void Main(string[] args)
         {
-            Startfunktion();
+            Von_Vorne_Beginnen();
         }
 
-        internal static void Startfunktion()
+        internal static void Von_Vorne_Beginnen()
         {
             string eingabe = Console.ReadLine();
             var befehl = Eingabeauswertung(eingabe);
-            var datum = Definiere_Datum_Vorbereitung(eingabe);
-            var wochentag = Definiere_Wochentag(eingabe);
-            var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum, wochentag);
+            var datum = Definiere_Datum_Aus_Eingabe(eingabe);
+            var erster_tag_der_woche = Definiere_Ersten_Tag_Der_Woche(eingabe);
+            var kalenderblatt = Kalenderhintergrund.Starte_Kalender(datum, erster_tag_der_woche);
             Schreibe_Kalender(kalenderblatt, befehl);
             Schließen(befehl);
-            Startfunktion();
+            Von_Vorne_Beginnen();
         }
 
         internal static string Eingabeauswertung(string eingabe)
@@ -42,15 +42,12 @@ namespace Kalender
             }
         }
 
-        internal static DateTime Definiere_Datum_Vorbereitung(string eingabe)
+        internal static DateTime Definiere_Datum_Aus_Eingabe(string eingabe)
         {
             DateTime datum;
             try
             {
-                var sub = Erstelle_Substring(eingabe);
-                var monat = Monatsangabe(sub);
-                var jahr = Jahresangabe(sub);
-                datum = Definiere_Datum_Untergeordnete_Funktion(jahr, monat);
+                datum = Versuche_Datum_Aus_Eingabe_Abzuleiten(eingabe);
             }
             catch
             {
@@ -59,35 +56,51 @@ namespace Kalender
             return datum;
         }
 
-        internal static string Erstelle_Substring(string eingabe)
+        internal static DateTime Versuche_Datum_Aus_Eingabe_Abzuleiten(string eingabe)
         {
-            string sub = eingabe.Substring(eingabe.IndexOf("cal") + 4);
-            return sub;
+            DateTime datum;
+            var beschnittene_eingabe = Schneide_cal_Weg(eingabe);
+            var eingegebener_monat = Lege_Die_Erste_Zahl_Als_Monat_Fest(beschnittene_eingabe);
+            var eingegebenes_jahr = Lege_Die_Zweite_Zahl_Als_Jahr_Fest(beschnittene_eingabe);
+            datum = Definiere_Datum_Mit_Hilfe_Der_Auswertung(eingegebenes_jahr, eingegebener_monat);
+            return datum;
         }
 
-        internal static int Monatsangabe(string sub)
+        internal static string Schneide_cal_Weg(string eingabe)
         {
-            string monat = sub.Substring(0, sub.IndexOf(" "));
+            string beschnittene_eingabe = eingabe.Substring(eingabe.IndexOf("cal") + 4);
+            return beschnittene_eingabe;
+        }
+
+        internal static int Lege_Die_Erste_Zahl_Als_Monat_Fest(string beschnittene_eingabe)
+        {
+            string monat = beschnittene_eingabe.Substring(0, beschnittene_eingabe.IndexOf(" "));
             return Convert.ToInt32(monat);
         }
 
-        internal static int Jahresangabe(string sub)
+        internal static int Lege_Die_Zweite_Zahl_Als_Jahr_Fest(string beschnittene_eingabe)
         {
-            string jahr = sub.Substring(sub.IndexOf(" ") + 1);
+            string jahr = beschnittene_eingabe.Substring(beschnittene_eingabe.IndexOf(" ") + 1);
+            jahr = Nach_Jahr_Rest_Abschneiden(jahr);
+            return Convert.ToInt32(jahr);
+        }
+
+        internal static string Nach_Jahr_Rest_Abschneiden(string jahr)
+        {
             if (jahr.Contains(" "))
             {
                 jahr = jahr.Substring(0, jahr.IndexOf(" "));
             }
-            return Convert.ToInt32(jahr);
+            return jahr;
         }
 
-        internal static DateTime Definiere_Datum_Untergeordnete_Funktion(int jahr, int monat)
+        internal static DateTime Definiere_Datum_Mit_Hilfe_Der_Auswertung(int jahr, int monat)
         {
             DateTime datum = new DateTime(Convert.ToInt32(jahr), Convert.ToInt32(monat), 1);
             return datum;
         }
 
-        internal static string Definiere_Wochentag(string eingabe)
+        internal static string Definiere_Ersten_Tag_Der_Woche(string eingabe)
         {
             if (eingabe.Contains("Sonntag"))
             {
