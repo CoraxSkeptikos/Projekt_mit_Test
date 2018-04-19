@@ -258,52 +258,68 @@ namespace Kalenderbibliothek
 
         internal static string[] Erstelle_Weitere_Zeilen(string[] tage, DateTime datum, string[] ausgabe)
         {
+            int letztertag;
+            var monatsende = Monatsende_Als_Zahl_Ausgeben(datum);
             for (int i = 3; i < ausgabe.Length; i++)
             {
-                tage = Erstelle_Zeile(tage, datum);
+                letztertag = Formatiere_Den_Letzten_Erfassten_Tag_Wieder_Als_Zahl(tage[6]);
+                tage = Erstelle_Zeile(tage, datum, letztertag, monatsende);
                 ausgabe[i] = Array_Zu_String_zusammenführen(tage);
             }
 
             return ausgabe;
         }
 
-        internal static string[] Erstelle_Zeile(string[] tage, DateTime datum)
+        internal static string[] Erstelle_Zeile(string[] tage, DateTime datum, int tag, int monatsende)
         {
-            try
+            for (int i = 0; i < tage.Length; i++)
             {
-                int letztertag = Convert.ToInt32(tage[6].Trim());
-
-                for (int i = 0; i < tage.Length; i++)
-                {
-                    letztertag++;
-                    if (letztertag < 10)
-                    {
-                        tage[i] = " ";
-                    }
-                    else
-                    {
-                        tage[i] = "";
-                    }
-                    if (letztertag <= DateTime.DaysInMonth(datum.Year, datum.Month))
-                    {
-                        tage[i] += Convert.ToString(letztertag);
-                    }
-                    else
-                    {
-                        tage[i] += "  ";
-                    }
-                    tage[i] += " ";
-                }
-            }
-            catch
-            {
-                for (int i = 0; i < tage.Length; i++)
-                {
-                    tage[i] = "   ";
-                }
+                tag ++;
+                tage[i] = Führendes_Leerzeichen_Anfügen_Wo_Benötigt(tag);
+                tage[i] += Tageszahl_Anfügen_Wenn_Monatsende_Nicht_Erreicht(tag, monatsende);
+                tage[i] += " ";
             }
 
             return tage;
+        }
+
+        internal static int Formatiere_Den_Letzten_Erfassten_Tag_Wieder_Als_Zahl(string letzter_erfasster_tag)
+        {
+            try
+            {
+                return Convert.ToInt32(letzter_erfasster_tag.Trim());
+            }
+            catch (Exception)
+            {
+                return 32;
+            }
+        }
+
+        internal static string Führendes_Leerzeichen_Anfügen_Wo_Benötigt(int tag)
+        {
+            string stelle = "";
+            if (tag < 10)
+            {
+                stelle = " ";
+            }
+            return stelle;
+        }
+
+        internal static int Monatsende_Als_Zahl_Ausgeben(DateTime datum)
+        {
+            return DateTime.DaysInMonth(datum.Year, datum.Month);
+        }
+
+        internal static string Tageszahl_Anfügen_Wenn_Monatsende_Nicht_Erreicht(int tag, int monatsende)
+        {
+            if (tag <= monatsende)
+            {
+                return Convert.ToString(tag);
+            }
+            else
+            {
+                return "  ";
+            }
         }
     }
 }
