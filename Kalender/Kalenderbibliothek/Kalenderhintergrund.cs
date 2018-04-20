@@ -75,12 +75,6 @@ namespace Kalenderbibliothek
             return tage;
         }
 
-        internal static string[] Erstelle_Tagesarray()
-        {
-            var tage = new string[7];
-            return tage;
-        }
-
         internal static DateTime Ermittle_Ersten_Tag_Des_Monats(DateTime datum)
         {
             var erster_tag_des_monats = new DateTime(datum.Year, datum.Month, 1);
