@@ -66,11 +66,11 @@ namespace Kalenderbibliothek
 
         internal static string[] Erstelle_Erste_Zeile_Tage(DateTime datum, int erster_tag_der_woche)
         {
-            var tage = Erstelle_Tagesarray();
-
             var erster_tag_des_monats = Ermittle_Ersten_Tag_Des_Monats(datum);
 
-            tage = Erstelle_Erste_Zeile_Tage_Nach_Wochenformat(tage, erster_tag_des_monats, erster_tag_der_woche);
+            var wochentag_des_ersten_tages_des_monats = Ermittle_Wochentag_Des_Ersten_Tages_Des_Monats(erster_tag_des_monats);
+
+            var tage = Erstelle_Erste_Zeile_Tage_Nach_Wochenformat(erster_tag_des_monats, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
 
             return tage;
         }
@@ -87,20 +87,6 @@ namespace Kalenderbibliothek
             return erster_tag_des_monats;
         }
 
-        internal static string[] Erstelle_Erste_Zeile_Tage_Nach_Wochenformat(string[] tage, DateTime erster_tag_des_monats, int erster_tag_der_woche)
-        {
-            var wochentag_des_ersten_tages_des_monats = Ermittle_Wochentag_Des_Ersten_Tages_Des_Monats(erster_tag_des_monats);
-
-            tage = Beginne_Am_Ersten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Zweiten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Dritten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Vierten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Fünften_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Sechsten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-            tage = Beginne_Am_Siebten_Tag_Der_Woche(tage, erster_tag_der_woche, wochentag_des_ersten_tages_des_monats);
-
-            return tage;
-        }
 
         internal static int Ermittle_Wochentag_Des_Ersten_Tages_Des_Monats(DateTime erster_tag_des_monats)
         {
@@ -125,125 +111,39 @@ namespace Kalenderbibliothek
             }
         }
 
-        internal static string[] Beginne_Am_Ersten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
+        internal static string[] Erstelle_Erste_Zeile_Tage_Nach_Wochenformat(DateTime erster_tag_des_monats, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
         {
-            if (wochentag_des_ersten_tages_des_monats == erster_tag_der_woche)
+
+            int tagnummer = 1;
+            int vergleichswert;
+            string[] tage = { "   ", "   ", "   ", "   ", "   ", "   ", "   " };
+
+            for (int durchlauf = 0; durchlauf < 7; durchlauf++)
             {
-                tage[0] = " 1 ";
-                tage[1] = " 2 ";
-                tage[2] = " 3 ";
-                tage[3] = " 4 ";
-                tage[4] = " 5 ";
-                tage[5] = " 6 ";
-                tage[6] = " 7 ";
+                vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, durchlauf);
+                if (wochentag_des_ersten_tages_des_monats == vergleichswert)
+                {
+                    for (int index = durchlauf; index < 7; index++)
+                    {
+                        tage[index] = " ";
+                        tage[index] += tagnummer;
+                        tage[index] += " ";
+                        tagnummer++;
+                    }
+                }
             }
+
             return tage;
         }
 
-        internal static string[] Beginne_Am_Zweiten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
+        internal static int Vergleichswert_Errechnen(int erster_tag_der_woche, int durchlauf)
         {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 1);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = " 1 ";
-                tage[2] = " 2 ";
-                tage[3] = " 3 ";
-                tage[4] = " 4 ";
-                tage[5] = " 5 ";
-                tage[6] = " 6 ";
-            }
-            return tage;
-        }
-
-        internal static int Vergleichswert_Errechnen(int erster_tag_der_woche, int summand)
-        {
-            var vergleichswert = erster_tag_der_woche + summand;
+            var vergleichswert = erster_tag_der_woche + durchlauf;
             if (vergleichswert > 7)
             {
                 vergleichswert %= 7;
             }
             return vergleichswert;
-        }
-
-        internal static string[] Beginne_Am_Dritten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
-        {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 2);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = "   ";
-                tage[2] = " 1 ";
-                tage[3] = " 2 ";
-                tage[4] = " 3 ";
-                tage[5] = " 4 ";
-                tage[6] = " 5 ";
-            }
-            return tage;
-        }
-
-        internal static string[] Beginne_Am_Vierten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
-        {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 3);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = "   ";
-                tage[2] = "   ";
-                tage[3] = " 1 ";
-                tage[4] = " 2 ";
-                tage[5] = " 3 ";
-                tage[6] = " 4 ";
-            }
-            return tage;
-        }
-
-        internal static string[] Beginne_Am_Fünften_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
-        {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 4);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = "   ";
-                tage[2] = "   ";
-                tage[3] = "   ";
-                tage[4] = " 1 ";
-                tage[5] = " 2 ";
-                tage[6] = " 3 ";
-            }
-            return tage;
-        }
-
-        internal static string[] Beginne_Am_Sechsten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
-        {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 5);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = "   ";
-                tage[2] = "   ";
-                tage[3] = "   ";
-                tage[4] = "   ";
-                tage[5] = " 1 ";
-                tage[6] = " 2 ";
-            }
-            return tage;
-        }
-
-        internal static string[] Beginne_Am_Siebten_Tag_Der_Woche(string[] tage, int erster_tag_der_woche, int wochentag_des_ersten_tages_des_monats)
-        {
-            var vergleichswert = Vergleichswert_Errechnen(erster_tag_der_woche, 6);
-            if (wochentag_des_ersten_tages_des_monats == vergleichswert)
-            {
-                tage[0] = "   ";
-                tage[1] = "   ";
-                tage[2] = "   ";
-                tage[3] = "   ";
-                tage[4] = "   ";
-                tage[5] = "   ";
-                tage[6] = " 1 ";
-            }
-            return tage;
         }
 
         internal static string Array_Zu_String_zusammenführen(string[] tage)
