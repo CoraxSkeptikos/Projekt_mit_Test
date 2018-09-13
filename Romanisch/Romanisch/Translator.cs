@@ -8,6 +8,8 @@ namespace Romanisch
 {
     class Translator
     {
+        #region computus
+
         internal static int Divide(int numerus_barbarus, int divisor)
         {
             int quotient = numerus_barbarus / divisor;
@@ -19,6 +21,8 @@ namespace Romanisch
             numerus_barbarus %= divisor;
             return numerus_barbarus;
         }
+
+        #endregion
 
         internal static Dictionary<string, int> Congerere_Vocabularium(int[] compositio)
         {

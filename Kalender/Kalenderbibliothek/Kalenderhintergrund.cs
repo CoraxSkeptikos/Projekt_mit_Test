@@ -10,22 +10,8 @@ namespace Kalenderbibliothek
     {
         public static string[] Starte_Kalender(DateTime datum, int erster_tag_der_woche)
         {
-            var monate = Erstelle_Monatsarray();
-
-            var ausgabe = Erstelle_Ausgabe(datum, monate, erster_tag_der_woche);
-
-            return ausgabe;
-        }
-
-        internal static string[] Erstelle_Monatsarray()
-        {
-            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
-            return monate;
-        }
-
-        internal static string[] Erstelle_Ausgabe(DateTime datum, string[] monate, int erster_tag_der_woche)
-        {
             var ausgabe = new string[8];
+            var monate = Erstelle_Monatsarray();
 
             ausgabe[0] = Erstelle_Überschrift(datum, monate);
             ausgabe[1] = Erstelle_Wochentagszeile(erster_tag_der_woche);
@@ -36,6 +22,12 @@ namespace Kalenderbibliothek
             ausgabe = Erstelle_Weitere_Zeilen(tage, datum, ausgabe);
 
             return ausgabe;
+        }
+
+        internal static string[] Erstelle_Monatsarray()
+        {
+            string[] monate = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
+            return monate;
         }
 
         internal static string Erstelle_Überschrift(DateTime datum, string[] monate)
