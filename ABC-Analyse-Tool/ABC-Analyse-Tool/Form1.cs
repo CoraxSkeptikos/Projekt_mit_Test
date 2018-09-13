@@ -34,20 +34,30 @@ namespace ABC_Analyse_Tool
             var kategorien = BestimmeKategorien(wertkumulativ, raenge, aAnteil, cAnteil);
 
             dataGridView1.Rows.Clear();
-
-            for (int i = 0; i < bezeichnungen.Length; i++)
-            {
-                if (bezeichnungen[i] != null && bezeichnungen[i] != "")
-                {
-                    dataGridView1.Rows.Add(bezeichnungen[i], mengen[i], mengenprozent[i], preise[i], werte[i], wertprozent[i], kategorien[i]);
-                }
-            }
-
+            DGVbefuellen(bezeichnungen, mengen, mengenprozent, preise, werte, wertprozent, kategorien);
             dataGridView1.Sort(dataGridView1.Columns["WertAbsolut"], ListSortDirection.Descending);
+            DGVfaerben();
 
             labelValueA.Text = aAnteil.ToString() + "%";
             labelValueC.Text = cAnteil.ToString() + "%";
 
+            DiagrammErstellen(kategorien, mengenprozent);
+            
+        }
+
+        private void DiagrammErstellen(char[] kategorien, int[] mengenprozent)
+        {
+            chart1.Series["Mengenanteile"].Points.Clear();
+            chart1.Series["Mengenanteile"].Points.AddXY("A", MengenanteilBerechnen(kategorien, mengenprozent, 'A'));
+            chart1.Series["Mengenanteile"].Points.AddXY("B", MengenanteilBerechnen(kategorien, mengenprozent, 'B'));
+            chart1.Series["Mengenanteile"].Points.AddXY("C", MengenanteilBerechnen(kategorien, mengenprozent, 'C'));
+            chart1.Series["Mengenanteile"].Points[0].Color = Color.Tomato;
+            chart1.Series["Mengenanteile"].Points[1].Color = Color.Khaki;
+            chart1.Series["Mengenanteile"].Points[2].Color = Color.SkyBlue;
+        }
+
+        private void DGVfaerben()
+        {
             foreach (DataGridViewRow zeile in dataGridView1.Rows)
                 if (Convert.ToString(zeile.Cells[6].Value) == "A")
                 {
@@ -61,15 +71,17 @@ namespace ABC_Analyse_Tool
                 {
                     zeile.DefaultCellStyle.BackColor = Color.Khaki;
                 }
+        }
 
-            chart1.Series["Mengenanteile"].Points.Clear();
-
-            chart1.Series["Mengenanteile"].Points.AddXY("A", MengenanteilBerechnen(kategorien, mengenprozent, 'A'));
-            chart1.Series["Mengenanteile"].Points.AddXY("B", MengenanteilBerechnen(kategorien, mengenprozent, 'B'));
-            chart1.Series["Mengenanteile"].Points.AddXY("C", MengenanteilBerechnen(kategorien, mengenprozent, 'C'));
-            chart1.Series["Mengenanteile"].Points[0].Color = Color.Tomato;
-            chart1.Series["Mengenanteile"].Points[1].Color = Color.Khaki;
-            chart1.Series["Mengenanteile"].Points[2].Color = Color.SkyBlue;
+        private void DGVbefuellen(string[] bezeichnungen, double[] mengen, int[] mengenprozent, double[] preise, double[] werte, int[] wertprozent, char[] kategorien)
+        {
+            for (int i = 0; i < bezeichnungen.Length; i++)
+            {
+                if (bezeichnungen[i] != null && bezeichnungen[i] != "")
+                {
+                    dataGridView1.Rows.Add(bezeichnungen[i], mengen[i], mengenprozent[i], preise[i], werte[i], wertprozent[i], kategorien[i]);
+                }
+            }
         }
 
         private int MengenanteilBerechnen(char[] kategorien, int[] mengenprozent, char kategorie)
