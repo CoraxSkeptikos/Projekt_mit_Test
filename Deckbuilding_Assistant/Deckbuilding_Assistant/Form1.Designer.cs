@@ -41,84 +41,97 @@
             // 
             // TBbibliothek
             // 
-            this.TBbibliothek.Location = new System.Drawing.Point(49, 77);
+            this.TBbibliothek.Location = new System.Drawing.Point(47, 77);
+            this.TBbibliothek.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TBbibliothek.Name = "TBbibliothek";
-            this.TBbibliothek.Size = new System.Drawing.Size(100, 20);
+            this.TBbibliothek.Size = new System.Drawing.Size(164, 28);
             this.TBbibliothek.TabIndex = 0;
             // 
             // TBcmc
             // 
-            this.TBcmc.Location = new System.Drawing.Point(49, 136);
+            this.TBcmc.Location = new System.Drawing.Point(47, 176);
+            this.TBcmc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TBcmc.Name = "TBcmc";
-            this.TBcmc.Size = new System.Drawing.Size(100, 20);
+            this.TBcmc.Size = new System.Drawing.Size(164, 28);
             this.TBcmc.TabIndex = 1;
             // 
             // TBlaender
             // 
-            this.TBlaender.Location = new System.Drawing.Point(49, 192);
+            this.TBlaender.Location = new System.Drawing.Point(47, 272);
+            this.TBlaender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TBlaender.Name = "TBlaender";
-            this.TBlaender.Size = new System.Drawing.Size(100, 20);
+            this.TBlaender.Size = new System.Drawing.Size(164, 28);
             this.TBlaender.TabIndex = 2;
             // 
             // LBLbibliothek
             // 
             this.LBLbibliothek.AutoSize = true;
-            this.LBLbibliothek.Location = new System.Drawing.Point(49, 58);
+            this.LBLbibliothek.Location = new System.Drawing.Point(47, 44);
+            this.LBLbibliothek.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLbibliothek.Name = "LBLbibliothek";
-            this.LBLbibliothek.Size = new System.Drawing.Size(85, 13);
+            this.LBLbibliothek.Size = new System.Drawing.Size(124, 22);
             this.LBLbibliothek.TabIndex = 3;
             this.LBLbibliothek.Text = "Bibliotheksgröße";
             // 
             // LBLcmc
             // 
             this.LBLcmc.AutoSize = true;
-            this.LBLcmc.Location = new System.Drawing.Point(49, 117);
+            this.LBLcmc.Location = new System.Drawing.Point(47, 144);
+            this.LBLcmc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLcmc.Name = "LBLcmc";
-            this.LBLcmc.Size = new System.Drawing.Size(66, 13);
+            this.LBLcmc.Size = new System.Drawing.Size(95, 22);
             this.LBLcmc.TabIndex = 4;
             this.LBLcmc.Text = "Manakosten";
             // 
             // LBLlaender
             // 
             this.LBLlaender.AutoSize = true;
-            this.LBLlaender.Location = new System.Drawing.Point(49, 173);
+            this.LBLlaender.Location = new System.Drawing.Point(47, 240);
+            this.LBLlaender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaender.Name = "LBLlaender";
-            this.LBLlaender.Size = new System.Drawing.Size(100, 13);
+            this.LBLlaender.Size = new System.Drawing.Size(152, 22);
             this.LBLlaender.TabIndex = 5;
             this.LBLlaender.Text = "Länder in Bibliothek";
             // 
             // LBLwahrscheinlichkeitsbezeichnung
             // 
             this.LBLwahrscheinlichkeitsbezeichnung.AutoSize = true;
-            this.LBLwahrscheinlichkeitsbezeichnung.Location = new System.Drawing.Point(49, 244);
+            this.LBLwahrscheinlichkeitsbezeichnung.Location = new System.Drawing.Point(167, 349);
+            this.LBLwahrscheinlichkeitsbezeichnung.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLwahrscheinlichkeitsbezeichnung.Name = "LBLwahrscheinlichkeitsbezeichnung";
-            this.LBLwahrscheinlichkeitsbezeichnung.Size = new System.Drawing.Size(97, 13);
+            this.LBLwahrscheinlichkeitsbezeichnung.Size = new System.Drawing.Size(142, 22);
             this.LBLwahrscheinlichkeitsbezeichnung.TabIndex = 6;
             this.LBLwahrscheinlichkeitsbezeichnung.Text = "Wahrscheinlichkeit";
             // 
             // LBLwahrscheinlichkeitswert
             // 
             this.LBLwahrscheinlichkeitswert.AutoSize = true;
-            this.LBLwahrscheinlichkeitswert.Location = new System.Drawing.Point(103, 267);
+            this.LBLwahrscheinlichkeitswert.Location = new System.Drawing.Point(238, 384);
+            this.LBLwahrscheinlichkeitswert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLwahrscheinlichkeitswert.Name = "LBLwahrscheinlichkeitswert";
-            this.LBLwahrscheinlichkeitswert.Size = new System.Drawing.Size(46, 13);
+            this.LBLwahrscheinlichkeitswert.Size = new System.Drawing.Size(71, 22);
             this.LBLwahrscheinlichkeitswert.TabIndex = 7;
             this.LBLwahrscheinlichkeitswert.Text = "XX,XX%";
             // 
             // BTberechnen
             // 
-            this.BTberechnen.Location = new System.Drawing.Point(187, 77);
+            this.BTberechnen.BackColor = System.Drawing.Color.RosyBrown;
+            this.BTberechnen.ForeColor = System.Drawing.Color.Black;
+            this.BTberechnen.Location = new System.Drawing.Point(278, 87);
+            this.BTberechnen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BTberechnen.Name = "BTberechnen";
-            this.BTberechnen.Size = new System.Drawing.Size(110, 135);
+            this.BTberechnen.Size = new System.Drawing.Size(163, 207);
             this.BTberechnen.TabIndex = 8;
             this.BTberechnen.Text = "Berechnen";
-            this.BTberechnen.UseVisualStyleBackColor = true;
+            this.BTberechnen.UseVisualStyleBackColor = false;
+            this.BTberechnen.Click += new System.EventHandler(this.BTberechnen_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 304);
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.ClientSize = new System.Drawing.Size(502, 437);
             this.Controls.Add(this.BTberechnen);
             this.Controls.Add(this.LBLwahrscheinlichkeitswert);
             this.Controls.Add(this.LBLwahrscheinlichkeitsbezeichnung);
@@ -128,6 +141,9 @@
             this.Controls.Add(this.TBlaender);
             this.Controls.Add(this.TBcmc);
             this.Controls.Add(this.TBbibliothek);
+            this.Font = new System.Drawing.Font("Monotype Corsiva", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.SeaShell;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Deckbau Assistent";
             this.ResumeLayout(false);
