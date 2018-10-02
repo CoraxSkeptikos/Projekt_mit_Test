@@ -41,8 +41,7 @@ namespace ABC_Analyse_Tool
             labelValueA.Text = aAnteil.ToString() + "%";
             labelValueC.Text = cAnteil.ToString() + "%";
 
-            DiagrammErstellen(kategorien, mengenprozent);
-            
+            DiagrammKlasse.DiagrammErstellen(kategorien, mengenprozent, chart1);
         }
 
         private void DiagrammErstellen(char[] kategorien, int[] mengenprozent)
@@ -105,6 +104,8 @@ namespace ABC_Analyse_Tool
             labelDatum.Text = heute.ToString("d");
 
             Hauptfunktion(trackBarA.Value, trackBarC.Value);
+
+            
         }
 
         private string[] ErfrageStringSpalte(MySqlConnection verbindung, string spaltenname, int maxID)
@@ -311,6 +312,9 @@ namespace ABC_Analyse_Tool
             Graphics memoryGraphics = Graphics.FromImage(bitmap);
             memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
         }
+
+        
+
     }
     //[TestFixture]
     //class testclass
