@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +23,7 @@ namespace Deckbuilding_Assistant
 
         }
 
-        private double BerechneHypergeometrischeVerteilung(int N, int K, int n, int k)
+        public static double BerechneHypergeometrischeVerteilung(int N, int K, int n, int k)
         {
             double H = 0;
 
@@ -31,7 +32,7 @@ namespace Deckbuilding_Assistant
             return H;
         }
 
-        private int BerechneBinomialkoeffizient(int n, int k)
+        private static int BerechneBinomialkoeffizient(int n, int k)
         {
             int ergebnis = 0;
 
@@ -40,7 +41,7 @@ namespace Deckbuilding_Assistant
             return ergebnis;
         }
 
-        private int BerechneFakultaet(int n)
+        private static int BerechneFakultaet(int n)
         {
             int ergebnis = 1;
 
@@ -51,6 +52,15 @@ namespace Deckbuilding_Assistant
             }
 
             return ergebnis;
+        }
+    }
+    [TestFixture]
+    class testklasse
+    {
+        [Test]
+        public void TesteHypergeometrischeVerteilung()
+        {
+            Assert.AreEqual(0.29, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 2));
         }
     }
 }
