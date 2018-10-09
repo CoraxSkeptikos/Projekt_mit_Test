@@ -32,31 +32,37 @@ namespace Deckbuilding_Assistant
             return H;
         }
 
-        private static int BerechneBinomialkoeffizient(int n, int k)
+        public static double BerechneBinomialkoeffizient(int n, int k)
         {
-            int ergebnis = 0;
+            double ergebnis = 1;
+            double schrittA = 0;
+            double schrittB = 0;
+            double schrittC = 0;
 
-            ergebnis = BerechneFakultaet(n) / (BerechneFakultaet(k) * BerechneFakultaet(n - k));
-
-            return ergebnis;
-        }
-
-        private static int BerechneFakultaet(int n)
-        {
-            int ergebnis = 1;
-
-            while (n != 1)
+            for (int i = 1; i <= k; i++)
             {
-                ergebnis = ergebnis * n;
-                n--;
+                schrittA = i - 1;
+                schrittB = n - schrittA;
+                schrittC = schrittB / i;
+                ergebnis = ergebnis * schrittC;
             }
 
             return ergebnis;
         }
     }
     [TestFixture]
-    class testklasse
+    class Testklasse
     {
+        [Test]
+        public void TesteBinomialkoeffizient()
+        {
+            Assert.AreEqual(0, Form1.BerechneBinomialkoeffizient(3, 92));
+            Assert.AreEqual(1, Form1.BerechneBinomialkoeffizient(32, 0));
+            Assert.AreEqual(50, Form1.BerechneBinomialkoeffizient(50, 1));
+            Assert.AreEqual(1225, Form1.BerechneBinomialkoeffizient(50, 2));
+            Assert.AreEqual(19600, Form1.BerechneBinomialkoeffizient(50, 3));
+        }
+
         [Test]
         public void TesteHypergeometrischeVerteilung()
         {
