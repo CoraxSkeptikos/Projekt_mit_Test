@@ -23,6 +23,17 @@ namespace Deckbuilding_Assistant
 
         }
 
+        public static double BerechneKumulativeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeßeStichprobe, int erfolgeAngestrebt)
+        {
+            double verteilung = 0;
+            while (erfolgeAngestrebt <= groeßeStichprobe && erfolgeAngestrebt <= erfolgeGesamt)
+            {
+                verteilung += BerechneHypergeometrischeVerteilung(gesamtmenge, erfolgeGesamt, groeßeStichprobe, erfolgeAngestrebt);
+                erfolgeAngestrebt++;
+            }
+            return verteilung;
+        }
+
         public static double BerechneHypergeometrischeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeßeStichprobe, int erfolgeAngestrebt)
         {
             int misserfolgeGesamt = gesamtmenge - erfolgeGesamt;
@@ -72,6 +83,14 @@ namespace Deckbuilding_Assistant
             Assert.AreEqual(0.285033, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 6));
             Assert.AreEqual(0.235767, Math.Round(Form1.BerechneHypergeometrischeVerteilung(99, 30, 7, 3), 6));
             Assert.AreEqual(0.417901, Math.Round(Form1.BerechneHypergeometrischeVerteilung(40, 4, 7, 1), 6));
+        }
+
+        [Test]
+        public void TesteKumulativeVerteilung()
+        {
+            Assert.AreEqual(0.824212, Math.Round(Form1.BerechneKumulativeVerteilung(60, 20, 8, 2), 6));
+            Assert.AreEqual(0.357563, Math.Round(Form1.BerechneKumulativeVerteilung(99, 30, 7, 3), 6));
+            Assert.AreEqual(0.552249, Math.Round(Form1.BerechneKumulativeVerteilung(40, 4, 7, 1), 6));
         }
     }
 }
