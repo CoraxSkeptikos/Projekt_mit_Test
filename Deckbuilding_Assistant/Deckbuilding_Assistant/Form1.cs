@@ -23,13 +23,16 @@ namespace Deckbuilding_Assistant
 
         }
 
-        public static double BerechneHypergeometrischeVerteilung(int N, int K, int n, int k)
+        public static double BerechneHypergeometrischeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeßeStichprobe, int erfolgeAngestrebt)
         {
-            double H = 0;
-
-            H = (BerechneBinomialkoeffizient(K, k) * BerechneBinomialkoeffizient(N - K, n - k)) / BerechneBinomialkoeffizient(N, n);
-
-            return H;
+            int misserfolgeGesamt = gesamtmenge - erfolgeGesamt;
+            int erlaubteMisserfolge = groeßeStichprobe - erfolgeAngestrebt;
+            double schrittC = BerechneBinomialkoeffizient(misserfolgeGesamt, erlaubteMisserfolge);
+            double schrittD = BerechneBinomialkoeffizient(erfolgeGesamt, erfolgeAngestrebt);
+            double schrittE = schrittC * schrittD;
+            double schrittF = BerechneBinomialkoeffizient(gesamtmenge, groeßeStichprobe);
+            double verteilung = schrittE / schrittF;
+            return verteilung;
         }
 
         public static double BerechneBinomialkoeffizient(int n, int k)
@@ -66,7 +69,9 @@ namespace Deckbuilding_Assistant
         [Test]
         public void TesteHypergeometrischeVerteilung()
         {
-            Assert.AreEqual(0.29, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 2));
+            Assert.AreEqual(0.285033, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 6));
+            Assert.AreEqual(0.235767, Math.Round(Form1.BerechneHypergeometrischeVerteilung(99, 30, 7, 3), 6));
+            Assert.AreEqual(0.417901, Math.Round(Form1.BerechneHypergeometrischeVerteilung(40, 4, 7, 1), 6));
         }
     }
 }
