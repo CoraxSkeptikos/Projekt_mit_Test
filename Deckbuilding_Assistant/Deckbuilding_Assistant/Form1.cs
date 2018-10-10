@@ -20,7 +20,33 @@ namespace Deckbuilding_Assistant
 
         private void BTberechnen_Click(object sender, EventArgs e)
         {
+            int bibliotheksgroeße;
+            int anzahlLaender;
+            int cmc;
 
+            try
+            {
+                bibliotheksgroeße = Convert.ToInt32(TBbibliothek.Text);
+                anzahlLaender = Convert.ToInt32(TBlaender.Text);
+                cmc = Convert.ToInt32(TBcmc.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bitte nur ganze Zahlen eingeben!");
+                TBbibliothek.Clear();
+                TBcmc.Clear();
+                TBlaender.Clear();
+                throw;
+            }
+            
+            int groeßeStichprobe = cmc + 5;
+
+            var wahrscheinlichkeit = BerechneKumulativeVerteilung(bibliotheksgroeße, anzahlLaender, groeßeStichprobe, cmc);
+
+            wahrscheinlichkeit = wahrscheinlichkeit * 100;
+            wahrscheinlichkeit = Math.Round(wahrscheinlichkeit, 2);
+
+            LBLwahrscheinlichkeitswert.Text = wahrscheinlichkeit.ToString() + "%";
         }
 
         public static double BerechneKumulativeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeßeStichprobe, int erfolgeAngestrebt)
