@@ -23,8 +23,8 @@ namespace Deckbuilding_Assistant
             try
             {
                 int bibliotheksgroesze = Convert.ToInt32(TBbibliothek.Text);
-                int anzahlLaender = Convert.ToInt32(TBlaender.Text);
-                int cmc = Convert.ToInt32(TBcmc.Text);
+                int anzahlLaender = Convert.ToInt32(TBlaenderGesamt.Text);
+                int cmc = Convert.ToInt32(TBkostenGenerisch.Text);
 
                 if (!FangeEingabefehlerAb(bibliotheksgroesze, anzahlLaender, cmc))
                 {
@@ -76,8 +76,8 @@ namespace Deckbuilding_Assistant
         private void LeereTextboxen()
         {
             TBbibliothek.Clear();
-            TBcmc.Clear();
-            TBlaender.Clear();
+            TBkostenGenerisch.Clear();
+            TBlaenderGesamt.Clear();
         }
 
         private static double BerechneKumulativeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeszeStichprobe, int erfolgeAngestrebt)
