@@ -23,19 +23,58 @@ namespace Deckbuilding_Assistant
             try
             {
                 int bibliotheksgroesze = Convert.ToInt32(TBbibliothek.Text);
-                int anzahlLaender = Convert.ToInt32(TBlaenderGesamt.Text);
-                int cmc = Convert.ToInt32(TBkostenGenerisch.Text);
 
-                if (!FangeEingabefehlerAb(bibliotheksgroesze, anzahlLaender, cmc))
+                int kostenWeisz = Convert.ToInt32(TBkostenWeisz.Text);
+                int kostenBlau = Convert.ToInt32(TBkostenBlau.Text);
+                int kostenSchwarz = Convert.ToInt32(TBkostenSchwarz.Text);
+                int kostenRot = Convert.ToInt32(TBkostenRot.Text);
+                int kostenGruen = Convert.ToInt32(TBkostenGruen.Text);
+                int kostenFarblos = Convert.ToInt32(TBkostenFarblos.Text);
+                int kostenGenerisch = Convert.ToInt32(TBkostenGenerisch.Text);
+
+                int cmc = kostenWeisz + kostenBlau + kostenSchwarz + kostenRot + kostenGruen + kostenFarblos + kostenGenerisch;
+
+                int laenderWeisz = Convert.ToInt32(TBlaenderWeisz.Text);
+                int laenderBlau = Convert.ToInt32(TBlaenderBlau.Text);
+                int laenderSchwarz = Convert.ToInt32(TBlaenderSchwarz.Text);
+                int laenderRot = Convert.ToInt32(TBlaenderRot.Text);
+                int laenderGruen = Convert.ToInt32(TBlaenderGruen.Text);
+                int laenderFarblos = Convert.ToInt32(TBlaenderFarblos.Text);
+                int laenderGesamt = Convert.ToInt32(TBlaenderGesamt.Text);
+
+                if (!FangeEingabefehlerAb(bibliotheksgroesze, laenderGesamt, cmc))
                 {
                     int groeszeStichprobe = cmc + 5;
 
-                    var wahrscheinlichkeit = BerechneKumulativeVerteilung(bibliotheksgroesze, anzahlLaender, groeszeStichprobe, cmc);
+                    while (true)
+                    {
 
-                    wahrscheinlichkeit = wahrscheinlichkeit * 100;
-                    wahrscheinlichkeit = Math.Round(wahrscheinlichkeit, 2);
+                    }
+                    var wahrscheinlichkeitWeisz = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderWeisz, groeszeStichprobe, kostenWeisz);
+                    groeszeStichprobe = groeszeStichprobe - kostenWeisz;
+                    var wahrscheinlichkeitBlau = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderBlau, groeszeStichprobe, kostenBlau);
+                    groeszeStichprobe = groeszeStichprobe - kostenBlau;
+                    var wahrscheinlichkeitSchwarz = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderSchwarz, groeszeStichprobe, kostenSchwarz);
+                    groeszeStichprobe = groeszeStichprobe - kostenSchwarz;
+                    var wahrscheinlichkeitRot = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderRot, groeszeStichprobe, kostenRot);
+                    groeszeStichprobe = groeszeStichprobe - kostenRot;
+                    var wahrscheinlichkeitGruen = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, kostenGruen);
+                    groeszeStichprobe = groeszeStichprobe - kostenGruen;
+                    var wahrscheinlichkeitFarblos = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, kostenFarblos);
+                    groeszeStichprobe = groeszeStichprobe - kostenFarblos;
+                    var wahrscheinlichkeitGenerisch = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
 
-                    TBwahrscheinlichkeit.Text = wahrscheinlichkeit.ToString() + "%";
+                    double wahrscheinlichkeitGesamt = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitSchwarz;
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitRot;
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitGruen;
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitFarblos;
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitGenerisch;
+
+                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * 100;
+                    wahrscheinlichkeitGesamt = Math.Round(wahrscheinlichkeitGesamt, 2);
+
+                    TBwahrscheinlichkeit.Text = wahrscheinlichkeitGesamt.ToString() + "%";
                     LBLmanakostenwert.Text = cmc.ToString();
                     if (cmc == 0)
                     {
@@ -121,10 +160,6 @@ namespace Deckbuilding_Assistant
             return ergebnis;
         }
 
-        private void LBLwahrscheinlichkeitswert_Click(object sender, EventArgs e)
-        {
-
-        }
     }
     [TestFixture]
     class Testklasse

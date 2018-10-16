@@ -86,6 +86,7 @@
             this.TBkostenGenerisch.Name = "TBkostenGenerisch";
             this.TBkostenGenerisch.Size = new System.Drawing.Size(64, 29);
             this.TBkostenGenerisch.TabIndex = 1;
+            this.TBkostenGenerisch.Text = "0";
             // 
             // TBlaenderGesamt
             // 
@@ -230,6 +231,7 @@
             this.TBkostenWeisz.Name = "TBkostenWeisz";
             this.TBkostenWeisz.Size = new System.Drawing.Size(38, 29);
             this.TBkostenWeisz.TabIndex = 16;
+            this.TBkostenWeisz.Text = "0";
             // 
             // LBLkostenWeisz
             // 
@@ -259,6 +261,7 @@
             this.TBkostenBlau.Name = "TBkostenBlau";
             this.TBkostenBlau.Size = new System.Drawing.Size(38, 29);
             this.TBkostenBlau.TabIndex = 18;
+            this.TBkostenBlau.Text = "0";
             // 
             // LBLkostenSchwarz
             // 
@@ -277,6 +280,7 @@
             this.TBkostenRot.Name = "TBkostenRot";
             this.TBkostenRot.Size = new System.Drawing.Size(38, 29);
             this.TBkostenRot.TabIndex = 20;
+            this.TBkostenRot.Text = "0";
             // 
             // LBLkostenGruen
             // 
@@ -306,6 +310,7 @@
             this.TBkostenGruen.Name = "TBkostenGruen";
             this.TBkostenGruen.Size = new System.Drawing.Size(38, 29);
             this.TBkostenGruen.TabIndex = 24;
+            this.TBkostenGruen.Text = "0";
             // 
             // LBLkostenRot
             // 
@@ -324,6 +329,7 @@
             this.TBkostenSchwarz.Name = "TBkostenSchwarz";
             this.TBkostenSchwarz.Size = new System.Drawing.Size(38, 29);
             this.TBkostenSchwarz.TabIndex = 26;
+            this.TBkostenSchwarz.Text = "0";
             // 
             // LBLkostenGenerisch
             // 
@@ -342,6 +348,7 @@
             this.TBkostenFarblos.Name = "TBkostenFarblos";
             this.TBkostenFarblos.Size = new System.Drawing.Size(38, 29);
             this.TBkostenFarblos.TabIndex = 28;
+            this.TBkostenFarblos.Text = "0";
             // 
             // TBlaenderFarblos
             // 
@@ -349,6 +356,7 @@
             this.TBlaenderFarblos.Name = "TBlaenderFarblos";
             this.TBlaenderFarblos.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderFarblos.TabIndex = 41;
+            this.TBlaenderFarblos.Text = "0";
             // 
             // LBLlaenderRot
             // 
@@ -367,6 +375,7 @@
             this.TBlaenderSchwarz.Name = "TBlaenderSchwarz";
             this.TBlaenderSchwarz.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderSchwarz.TabIndex = 39;
+            this.TBlaenderSchwarz.Text = "0";
             // 
             // LBLlaenderFarblos
             // 
@@ -385,6 +394,7 @@
             this.TBlaenderGruen.Name = "TBlaenderGruen";
             this.TBlaenderGruen.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderGruen.TabIndex = 37;
+            this.TBlaenderGruen.Text = "0";
             // 
             // LBLlaenderGruen
             // 
@@ -414,6 +424,7 @@
             this.TBlaenderRot.Name = "TBlaenderRot";
             this.TBlaenderRot.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderRot.TabIndex = 34;
+            this.TBlaenderRot.Text = "0";
             // 
             // LBLlaenderBlau
             // 
@@ -432,6 +443,7 @@
             this.TBlaenderBlau.Name = "TBlaenderBlau";
             this.TBlaenderBlau.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderBlau.TabIndex = 32;
+            this.TBlaenderBlau.Text = "0";
             // 
             // LBLlaenderWeisz
             // 
@@ -450,6 +462,7 @@
             this.TBlaenderWeisz.Name = "TBlaenderWeisz";
             this.TBlaenderWeisz.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderWeisz.TabIndex = 30;
+            this.TBlaenderWeisz.Text = "0";
             // 
             // LBLlaenderGesamt
             // 
