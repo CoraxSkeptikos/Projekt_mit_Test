@@ -40,29 +40,66 @@ namespace Deckbuilding_Assistant
                 int laenderRot = Convert.ToInt32(TBlaenderRot.Text);
                 int laenderGruen = Convert.ToInt32(TBlaenderGruen.Text);
                 int laenderFarblos = Convert.ToInt32(TBlaenderFarblos.Text);
-                int laenderGesamt = Convert.ToInt32(TBlaenderGesamt.Text);
+                int laenderGesamt = laenderWeisz + laenderBlau + laenderSchwarz + laenderRot + laenderGruen + laenderFarblos;
+                TBlaenderGesamt.Text = laenderGesamt.ToString();
 
                 if (!FangeEingabefehlerAb(bibliotheksgroesze, laenderGesamt, cmc))
                 {
                     int groeszeStichprobe = cmc + 5;
 
-                    while (true)
-                    {
+                    var wahrscheinlichkeitGenerisch = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
 
+                    double wahrscheinlichkeitWeisz = 0;
+                    double wahrscheinlichkeitBlau = 0;
+                    double wahrscheinlichkeitSchwarz = 0;
+                    double wahrscheinlichkeitRot = 0;
+                    double wahrscheinlichkeitGruen = 0;
+                    double wahrscheinlichkeitFarblos = 0;
+
+                    int erfolgeKumulativWeisz = kostenWeisz;
+                    int erfolgeKumulativBlau = kostenBlau;
+                    int erfolgeKumulativSchwarz = kostenSchwarz;
+                    int erfolgeKumulativRot = kostenRot;
+                    int erfolgeKumulativGruen = kostenGruen;
+                    while (erfolgeKumulativWeisz <= groeszeStichprobe)
+                    {
+                        wahrscheinlichkeitWeisz += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderWeisz, groeszeStichprobe, erfolgeKumulativWeisz);
+                        groeszeStichprobe = groeszeStichprobe - erfolgeKumulativWeisz;
+                        while (erfolgeKumulativBlau <= groeszeStichprobe)
+                        {
+                            wahrscheinlichkeitBlau += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderBlau, groeszeStichprobe, erfolgeKumulativBlau);
+                            groeszeStichprobe = groeszeStichprobe - erfolgeKumulativBlau;
+                            while (erfolgeKumulativSchwarz <= groeszeStichprobe)
+                            {
+                                wahrscheinlichkeitSchwarz += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderSchwarz, groeszeStichprobe, erfolgeKumulativSchwarz);
+                                groeszeStichprobe = groeszeStichprobe - erfolgeKumulativSchwarz;
+                                while (erfolgeKumulativRot <= groeszeStichprobe)
+                                {
+                                    wahrscheinlichkeitRot += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderRot, groeszeStichprobe, erfolgeKumulativRot);
+                                    groeszeStichprobe = groeszeStichprobe - erfolgeKumulativRot;
+                                    while (true)
+                                    {
+
+                                    }
+                                    erfolgeKumulativRot++;
+                                }
+                                erfolgeKumulativSchwarz++;
+                            }
+                            erfolgeKumulativBlau++;
+                        }
+                        
+                        
+                        
+                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, kostenGruen);
+                        groeszeStichprobe = groeszeStichprobe - kostenGruen;
+                        wahrscheinlichkeitFarblos += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, kostenFarblos);
+                        groeszeStichprobe = groeszeStichprobe - kostenFarblos;
+                        erfolgeKumulativWeisz++;
+                        groeszeStichprobe = cmc + 5;
                     }
-                    var wahrscheinlichkeitWeisz = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderWeisz, groeszeStichprobe, kostenWeisz);
-                    groeszeStichprobe = groeszeStichprobe - kostenWeisz;
-                    var wahrscheinlichkeitBlau = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderBlau, groeszeStichprobe, kostenBlau);
-                    groeszeStichprobe = groeszeStichprobe - kostenBlau;
-                    var wahrscheinlichkeitSchwarz = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderSchwarz, groeszeStichprobe, kostenSchwarz);
-                    groeszeStichprobe = groeszeStichprobe - kostenSchwarz;
-                    var wahrscheinlichkeitRot = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderRot, groeszeStichprobe, kostenRot);
-                    groeszeStichprobe = groeszeStichprobe - kostenRot;
-                    var wahrscheinlichkeitGruen = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, kostenGruen);
-                    groeszeStichprobe = groeszeStichprobe - kostenGruen;
-                    var wahrscheinlichkeitFarblos = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, kostenFarblos);
-                    groeszeStichprobe = groeszeStichprobe - kostenFarblos;
-                    var wahrscheinlichkeitGenerisch = BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
+                    
+                    
+                    
 
                     double wahrscheinlichkeitGesamt = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitSchwarz;

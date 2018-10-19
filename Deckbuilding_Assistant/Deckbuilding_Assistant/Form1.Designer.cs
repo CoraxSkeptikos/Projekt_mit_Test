@@ -78,6 +78,7 @@
             this.TBbibliothek.Name = "TBbibliothek";
             this.TBbibliothek.Size = new System.Drawing.Size(164, 29);
             this.TBbibliothek.TabIndex = 0;
+            this.TBbibliothek.Text = "60";
             // 
             // TBkostenGenerisch
             // 
@@ -90,9 +91,11 @@
             // 
             // TBlaenderGesamt
             // 
+            this.TBlaenderGesamt.BackColor = System.Drawing.Color.PeachPuff;
             this.TBlaenderGesamt.Location = new System.Drawing.Point(135, 474);
             this.TBlaenderGesamt.Margin = new System.Windows.Forms.Padding(4);
             this.TBlaenderGesamt.Name = "TBlaenderGesamt";
+            this.TBlaenderGesamt.ReadOnly = true;
             this.TBlaenderGesamt.Size = new System.Drawing.Size(64, 29);
             this.TBlaenderGesamt.TabIndex = 2;
             // 
@@ -122,9 +125,9 @@
             this.LBLlaender.Location = new System.Drawing.Point(47, 339);
             this.LBLlaender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaender.Name = "LBLlaender";
-            this.LBLlaender.Size = new System.Drawing.Size(175, 24);
+            this.LBLlaender.Size = new System.Drawing.Size(244, 24);
             this.LBLlaender.TabIndex = 5;
-            this.LBLlaender.Text = "Länder in Bibliothek";
+            this.LBLlaender.Text = "Standardländer in Bibliothek";
             // 
             // LBLwahrscheinlichkeitsbzch
             // 
@@ -352,7 +355,7 @@
             // 
             // TBlaenderFarblos
             // 
-            this.TBlaenderFarblos.Location = new System.Drawing.Point(251, 426);
+            this.TBlaenderFarblos.Location = new System.Drawing.Point(282, 426);
             this.TBlaenderFarblos.Name = "TBlaenderFarblos";
             this.TBlaenderFarblos.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderFarblos.TabIndex = 41;
@@ -362,16 +365,16 @@
             // 
             this.LBLlaenderRot.AutoSize = true;
             this.LBLlaenderRot.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLlaenderRot.Location = new System.Drawing.Point(98, 432);
+            this.LBLlaenderRot.Location = new System.Drawing.Point(59, 432);
             this.LBLlaenderRot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderRot.Name = "LBLlaenderRot";
-            this.LBLlaenderRot.Size = new System.Drawing.Size(28, 20);
+            this.LBLlaenderRot.Size = new System.Drawing.Size(66, 20);
             this.LBLlaenderRot.TabIndex = 40;
-            this.LBLlaenderRot.Text = "rot";
+            this.LBLlaenderRot.Text = "Gebirge";
             // 
             // TBlaenderSchwarz
             // 
-            this.TBlaenderSchwarz.Location = new System.Drawing.Point(250, 382);
+            this.TBlaenderSchwarz.Location = new System.Drawing.Point(281, 382);
             this.TBlaenderSchwarz.Name = "TBlaenderSchwarz";
             this.TBlaenderSchwarz.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderSchwarz.TabIndex = 39;
@@ -381,12 +384,12 @@
             // 
             this.LBLlaenderFarblos.AutoSize = true;
             this.LBLlaenderFarblos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLlaenderFarblos.Location = new System.Drawing.Point(296, 432);
+            this.LBLlaenderFarblos.Location = new System.Drawing.Point(327, 432);
             this.LBLlaenderFarblos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderFarblos.Name = "LBLlaenderFarblos";
-            this.LBLlaenderFarblos.Size = new System.Drawing.Size(57, 20);
+            this.LBLlaenderFarblos.Size = new System.Drawing.Size(67, 20);
             this.LBLlaenderFarblos.TabIndex = 38;
-            this.LBLlaenderFarblos.Text = "farblos";
+            this.LBLlaenderFarblos.Text = "Ödnisse";
             // 
             // TBlaenderGruen
             // 
@@ -403,24 +406,24 @@
             this.LBLlaenderGruen.Location = new System.Drawing.Point(192, 432);
             this.LBLlaenderGruen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderGruen.Name = "LBLlaenderGruen";
-            this.LBLlaenderGruen.Size = new System.Drawing.Size(41, 20);
+            this.LBLlaenderGruen.Size = new System.Drawing.Size(59, 20);
             this.LBLlaenderGruen.TabIndex = 36;
-            this.LBLlaenderGruen.Text = "grün";
+            this.LBLlaenderGruen.Text = "Wälder";
             // 
             // LBLlaenderSchwarz
             // 
             this.LBLlaenderSchwarz.AutoSize = true;
             this.LBLlaenderSchwarz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLlaenderSchwarz.Location = new System.Drawing.Point(295, 388);
+            this.LBLlaenderSchwarz.Location = new System.Drawing.Point(326, 388);
             this.LBLlaenderSchwarz.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderSchwarz.Name = "LBLlaenderSchwarz";
-            this.LBLlaenderSchwarz.Size = new System.Drawing.Size(67, 20);
+            this.LBLlaenderSchwarz.Size = new System.Drawing.Size(65, 20);
             this.LBLlaenderSchwarz.TabIndex = 35;
-            this.LBLlaenderSchwarz.Text = "schwarz";
+            this.LBLlaenderSchwarz.Text = "Sümpfe";
             // 
             // TBlaenderRot
             // 
-            this.TBlaenderRot.Location = new System.Drawing.Point(51, 426);
+            this.TBlaenderRot.Location = new System.Drawing.Point(12, 426);
             this.TBlaenderRot.Name = "TBlaenderRot";
             this.TBlaenderRot.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderRot.TabIndex = 34;
@@ -433,9 +436,9 @@
             this.LBLlaenderBlau.Location = new System.Drawing.Point(192, 388);
             this.LBLlaenderBlau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderBlau.Name = "LBLlaenderBlau";
-            this.LBLlaenderBlau.Size = new System.Drawing.Size(39, 20);
+            this.LBLlaenderBlau.Size = new System.Drawing.Size(52, 20);
             this.LBLlaenderBlau.TabIndex = 33;
-            this.LBLlaenderBlau.Text = "blau";
+            this.LBLlaenderBlau.Text = "Inseln";
             // 
             // TBlaenderBlau
             // 
@@ -449,16 +452,16 @@
             // 
             this.LBLlaenderWeisz.AutoSize = true;
             this.LBLlaenderWeisz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLlaenderWeisz.Location = new System.Drawing.Point(96, 388);
+            this.LBLlaenderWeisz.Location = new System.Drawing.Point(57, 388);
             this.LBLlaenderWeisz.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLlaenderWeisz.Name = "LBLlaenderWeisz";
-            this.LBLlaenderWeisz.Size = new System.Drawing.Size(42, 20);
+            this.LBLlaenderWeisz.Size = new System.Drawing.Size(65, 20);
             this.LBLlaenderWeisz.TabIndex = 31;
-            this.LBLlaenderWeisz.Text = "weiß";
+            this.LBLlaenderWeisz.Text = "Ebenen";
             // 
             // TBlaenderWeisz
             // 
-            this.TBlaenderWeisz.Location = new System.Drawing.Point(51, 382);
+            this.TBlaenderWeisz.Location = new System.Drawing.Point(12, 382);
             this.TBlaenderWeisz.Name = "TBlaenderWeisz";
             this.TBlaenderWeisz.Size = new System.Drawing.Size(38, 29);
             this.TBlaenderWeisz.TabIndex = 30;
