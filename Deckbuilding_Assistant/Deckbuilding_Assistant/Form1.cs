@@ -61,6 +61,15 @@ namespace Deckbuilding_Assistant
                     int erfolgeKumulativSchwarz = kostenSchwarz;
                     int erfolgeKumulativRot = kostenRot;
                     int erfolgeKumulativGruen = kostenGruen;
+                    int erfolgeKumulativFarblos = kostenFarblos;
+
+                    int groeszeStichprobeWeisz = groeszeStichprobe;
+                    int groeszeStichprobeBlau = groeszeStichprobe;
+                    int groeszeStichprobeSchwarz = groeszeStichprobe;
+                    int groeszeStichprobeRot = groeszeStichprobe;
+                    int groeszeStichprobeGruen = groeszeStichprobe;
+                    int groeszeStichprobeFarblos = groeszeStichprobe;
+
                     while (erfolgeKumulativWeisz <= groeszeStichprobe)
                     {
                         wahrscheinlichkeitWeisz += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderWeisz, groeszeStichprobe, erfolgeKumulativWeisz);
@@ -77,9 +86,18 @@ namespace Deckbuilding_Assistant
                                 {
                                     wahrscheinlichkeitRot += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderRot, groeszeStichprobe, erfolgeKumulativRot);
                                     groeszeStichprobe = groeszeStichprobe - erfolgeKumulativRot;
-                                    while (true)
+                                    while (erfolgeKumulativGruen <= groeszeStichprobe)
                                     {
-
+                                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, erfolgeKumulativGruen);
+                                        groeszeStichprobeGruen = groeszeStichprobe - erfolgeKumulativGruen;
+                                        erfolgeKumulativFarblos = kostenFarblos;
+                                        while (erfolgeKumulativFarblos <= groeszeStichprobeGruen)
+                                        {
+                                            wahrscheinlichkeitFarblos += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, erfolgeKumulativFarblos);
+                                            //groeszeStichprobe = groeszeStichprobe - erfolgeKumulativFarblos;
+                                            erfolgeKumulativFarblos++;
+                                        }
+                                        erfolgeKumulativGruen++;
                                     }
                                     erfolgeKumulativRot++;
                                 }
@@ -87,15 +105,8 @@ namespace Deckbuilding_Assistant
                             }
                             erfolgeKumulativBlau++;
                         }
-                        
-                        
-                        
-                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, kostenGruen);
-                        groeszeStichprobe = groeszeStichprobe - kostenGruen;
-                        wahrscheinlichkeitFarblos += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, kostenFarblos);
-                        groeszeStichprobe = groeszeStichprobe - kostenFarblos;
                         erfolgeKumulativWeisz++;
-                        groeszeStichprobe = cmc + 5;
+                        //groeszeStichprobeWeisz = groeszeStichprobe;
                     }
                     
                     
