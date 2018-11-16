@@ -23,6 +23,7 @@ namespace Deckbuilding_Assistant
             try
             {
                 int bibliotheksgroesze = Convert.ToInt32(TBbibliothek.Text);
+                bibliotheksgroesze--;
                 int anzahlLaender = Convert.ToInt32(TBlaender.Text);
                 int cmc = Convert.ToInt32(TBcmc.Text);
 
@@ -121,10 +122,6 @@ namespace Deckbuilding_Assistant
             return ergebnis;
         }
 
-        private void LBLwahrscheinlichkeitswert_Click(object sender, EventArgs e)
-        {
-
-        }
     }
     [TestFixture]
     class Testklasse
