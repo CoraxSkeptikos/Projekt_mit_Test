@@ -47,7 +47,7 @@ namespace Deckbuilding_Assistant
                 {
                     int groeszeStichprobe = cmc + 5;
 
-                    var wahrscheinlichkeitGenerisch = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
+                    //var wahrscheinlichkeitGenerisch = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
 
                     double wahrscheinlichkeitWeisz = 0;
                     double wahrscheinlichkeitBlau = 0;
@@ -70,46 +70,11 @@ namespace Deckbuilding_Assistant
                     int groeszeStichprobeGruen = groeszeStichprobe;
                     int groeszeStichprobeFarblos = groeszeStichprobe;
 
-                    while (erfolgeKumulativWeisz <= groeszeStichprobe)
+                    while (erfolgeKumulativGruen <= groeszeStichprobeGruen && erfolgeKumulativGruen <= laenderGruen)
                     {
-                        wahrscheinlichkeitWeisz += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderWeisz, groeszeStichprobe, erfolgeKumulativWeisz);
-                        groeszeStichprobe = groeszeStichprobe - erfolgeKumulativWeisz;
-                        while (erfolgeKumulativBlau <= groeszeStichprobe)
-                        {
-                            wahrscheinlichkeitBlau += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderBlau, groeszeStichprobe, erfolgeKumulativBlau);
-                            groeszeStichprobe = groeszeStichprobe - erfolgeKumulativBlau;
-                            while (erfolgeKumulativSchwarz <= groeszeStichprobe)
-                            {
-                                wahrscheinlichkeitSchwarz += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderSchwarz, groeszeStichprobe, erfolgeKumulativSchwarz);
-                                groeszeStichprobe = groeszeStichprobe - erfolgeKumulativSchwarz;
-                                while (erfolgeKumulativRot <= groeszeStichprobe)
-                                {
-                                    wahrscheinlichkeitRot += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderRot, groeszeStichprobe, erfolgeKumulativRot);
-                                    groeszeStichprobe = groeszeStichprobe - erfolgeKumulativRot;
-                                    while (erfolgeKumulativGruen <= groeszeStichprobe)
-                                    {
-                                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderGruen, groeszeStichprobe, erfolgeKumulativGruen);
-                                        groeszeStichprobeGruen = groeszeStichprobe - erfolgeKumulativGruen;
-                                        erfolgeKumulativFarblos = kostenFarblos;
-                                        while (erfolgeKumulativFarblos <= groeszeStichprobeGruen)
-                                        {
-                                            wahrscheinlichkeitFarblos += BerechneHypergeometrischeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobe, erfolgeKumulativFarblos);
-                                            //groeszeStichprobe = groeszeStichprobe - erfolgeKumulativFarblos;
-                                            erfolgeKumulativFarblos++;
-                                        }
-                                        erfolgeKumulativGruen++;
-                                    }
-                                    erfolgeKumulativRot++;
-                                }
-                                erfolgeKumulativSchwarz++;
-                            }
-                            erfolgeKumulativBlau++;
-                        }
-                        erfolgeKumulativWeisz++;
-                        //groeszeStichprobeWeisz = groeszeStichprobe;
+                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze,)
                     }
-                    
-                    
+                    wahrscheinlichkeitFarblos = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobeFarblos, kostenFarblos);
                     
 
                     double wahrscheinlichkeitGesamt = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
