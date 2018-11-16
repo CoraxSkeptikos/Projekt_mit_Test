@@ -23,6 +23,7 @@ namespace Deckbuilding_Assistant
             try
             {
                 int bibliotheksgroesze = Convert.ToInt32(TBbibliothek.Text);
+                bibliotheksgroesze--;
 
                 int kostenWeisz = Convert.ToInt32(TBkostenWeisz.Text);
                 int kostenBlau = Convert.ToInt32(TBkostenBlau.Text);
@@ -70,12 +71,22 @@ namespace Deckbuilding_Assistant
                     int groeszeStichprobeGruen = groeszeStichprobe;
                     int groeszeStichprobeFarblos = groeszeStichprobe;
 
+                    int bibliotheksgroeszeWeisz = bibliotheksgroesze;
+                    int bibliotheksgroeszeBlau = bibliotheksgroesze;
+                    int bibliotheksgroeszeSchwarz = bibliotheksgroesze;
+                    int bibliotheksgroeszeRot = bibliotheksgroesze;
+                    int bibliotheksgroeszeGruen = bibliotheksgroesze;
+                    int bibliotheksgroeszeFarblos = bibliotheksgroesze;
+
                     while (erfolgeKumulativGruen <= groeszeStichprobeGruen && erfolgeKumulativGruen <= laenderGruen)
                     {
-                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroesze,)
+                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeGruen, laenderGruen, groeszeStichprobeGruen, erfolgeKumulativGruen);
+                        groeszeStichprobeFarblos = groeszeStichprobeGruen - erfolgeKumulativGruen;
+                        bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - erfolgeKumulativGruen;
+                        wahrscheinlichkeitFarblos = BerechneKumulativeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, kostenFarblos);
+                        erfolgeKumulativGruen++;
                     }
-                    wahrscheinlichkeitFarblos = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderFarblos, groeszeStichprobeFarblos, kostenFarblos);
-                    
+                    erfolgeKumulativGruen = kostenGruen;
 
                     double wahrscheinlichkeitGesamt = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitSchwarz;
