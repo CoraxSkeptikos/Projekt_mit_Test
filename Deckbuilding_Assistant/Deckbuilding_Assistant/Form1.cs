@@ -78,6 +78,9 @@ namespace Deckbuilding_Assistant
                     int bibliotheksgroeszeGruen = bibliotheksgroesze;
                     int bibliotheksgroeszeFarblos = bibliotheksgroesze;
 
+                    List<double> wahrscheinlickeitsliste = new List<double>();
+                    double wahrscheinlichkeitZwischenergebnis = 1;
+
                     while (erfolgeKumulativWeisz <= groeszeStichprobeWeisz && erfolgeKumulativWeisz <= laenderWeisz)
                     {
                         wahrscheinlichkeitWeisz += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeWeisz, laenderWeisz, groeszeStichprobeWeisz, erfolgeKumulativWeisz);
@@ -105,6 +108,19 @@ namespace Deckbuilding_Assistant
                                         bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - erfolgeKumulativGruen;
                                         wahrscheinlichkeitFarblos = BerechneKumulativeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, kostenFarblos);
                                         erfolgeKumulativGruen++;
+                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
+                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitSchwarz;
+                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitRot;
+                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitGruen;
+                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitFarblos;
+                                        wahrscheinlickeitsliste.Add(wahrscheinlichkeitZwischenergebnis);
+                                        wahrscheinlichkeitWeisz = 0;
+                                        wahrscheinlichkeitBlau = 0;
+                                        wahrscheinlichkeitSchwarz = 0;
+                                        wahrscheinlichkeitRot = 0;
+                                        wahrscheinlichkeitGruen = 0;
+                                        wahrscheinlichkeitFarblos = 0;
+
                                     }
                                     erfolgeKumulativGruen = kostenGruen;
                                     erfolgeKumulativRot++;
@@ -119,20 +135,12 @@ namespace Deckbuilding_Assistant
                         erfolgeKumulativWeisz++;
                     }
 
-                    
+                    double wahrscheinlichkeitGesamt = 0;
 
-                    
-
-                    
-
-                    
-
-                    double wahrscheinlichkeitGesamt = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
-                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitSchwarz;
-                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitRot;
-                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitGruen;
-                    wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitFarblos;
-                    //wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * wahrscheinlichkeitGenerisch;
+                    foreach (var item in wahrscheinlickeitsliste)
+                    {
+                        wahrscheinlichkeitGesamt += item;
+                    }
 
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * 100;
                     wahrscheinlichkeitGesamt = Math.Round(wahrscheinlichkeitGesamt, 2);
