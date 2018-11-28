@@ -83,44 +83,42 @@ namespace Deckbuilding_Assistant
 
                     while (erfolgeKumulativWeisz <= groeszeStichprobeWeisz && erfolgeKumulativWeisz <= laenderWeisz)
                     {
-                        wahrscheinlichkeitWeisz += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeWeisz, laenderWeisz, groeszeStichprobeWeisz, erfolgeKumulativWeisz);
+                        wahrscheinlichkeitWeisz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeWeisz, laenderWeisz, groeszeStichprobeWeisz, erfolgeKumulativWeisz);
                         groeszeStichprobeBlau = groeszeStichprobeWeisz - erfolgeKumulativWeisz;
                         bibliotheksgroeszeBlau = bibliotheksgroeszeWeisz - erfolgeKumulativWeisz;
                         while (erfolgeKumulativBlau <= groeszeStichprobeBlau && erfolgeKumulativBlau <= laenderBlau)
                         {
-                            wahrscheinlichkeitBlau += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeBlau, laenderBlau, groeszeStichprobeBlau, erfolgeKumulativBlau);
+                            wahrscheinlichkeitBlau = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeBlau, laenderBlau, groeszeStichprobeBlau, erfolgeKumulativBlau);
                             groeszeStichprobeSchwarz = groeszeStichprobeBlau - erfolgeKumulativBlau;
                             bibliotheksgroeszeSchwarz = bibliotheksgroeszeBlau - erfolgeKumulativBlau;
                             while (erfolgeKumulativSchwarz <= groeszeStichprobeSchwarz && erfolgeKumulativSchwarz <= laenderSchwarz)
                             {
-                                wahrscheinlichkeitSchwarz += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeSchwarz, laenderSchwarz, groeszeStichprobeSchwarz, erfolgeKumulativSchwarz);
+                                wahrscheinlichkeitSchwarz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeSchwarz, laenderSchwarz, groeszeStichprobeSchwarz, erfolgeKumulativSchwarz);
                                 groeszeStichprobeRot = groeszeStichprobeSchwarz - erfolgeKumulativSchwarz;
                                 bibliotheksgroeszeRot = bibliotheksgroeszeSchwarz - erfolgeKumulativSchwarz;
                                 while (erfolgeKumulativRot <= groeszeStichprobeRot && erfolgeKumulativRot <= laenderRot)
                                 {
-                                    wahrscheinlichkeitRot += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeRot, laenderRot, groeszeStichprobeRot, erfolgeKumulativRot);
+                                    wahrscheinlichkeitRot = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeRot, laenderRot, groeszeStichprobeRot, erfolgeKumulativRot);
                                     groeszeStichprobeGruen = groeszeStichprobeRot - erfolgeKumulativRot;
                                     bibliotheksgroeszeGruen = bibliotheksgroeszeRot - erfolgeKumulativRot;
                                     while (erfolgeKumulativGruen <= groeszeStichprobeGruen && erfolgeKumulativGruen <= laenderGruen)
                                     {
-                                        wahrscheinlichkeitGruen += BerechneHypergeometrischeVerteilung(bibliotheksgroeszeGruen, laenderGruen, groeszeStichprobeGruen, erfolgeKumulativGruen);
+                                        wahrscheinlichkeitGruen = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeGruen, laenderGruen, groeszeStichprobeGruen, erfolgeKumulativGruen);
                                         groeszeStichprobeFarblos = groeszeStichprobeGruen - erfolgeKumulativGruen;
                                         bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - erfolgeKumulativGruen;
-                                        wahrscheinlichkeitFarblos = BerechneKumulativeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, kostenFarblos);
+                                        while (erfolgeKumulativFarblos <= groeszeStichprobe && erfolgeKumulativFarblos <= laenderFarblos)
+                                        {
+                                            wahrscheinlichkeitFarblos = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, erfolgeKumulativFarblos);
+                                            erfolgeKumulativFarblos++;
+                                            wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
+                                            wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitSchwarz;
+                                            wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitRot;
+                                            wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitGruen;
+                                            wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitFarblos;
+                                            wahrscheinlickeitsliste.Add(wahrscheinlichkeitZwischenergebnis);
+                                        }
+                                        erfolgeKumulativFarblos = kostenFarblos;
                                         erfolgeKumulativGruen++;
-                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
-                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitSchwarz;
-                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitRot;
-                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitGruen;
-                                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitFarblos;
-                                        wahrscheinlickeitsliste.Add(wahrscheinlichkeitZwischenergebnis);
-                                        wahrscheinlichkeitWeisz = 0;
-                                        wahrscheinlichkeitBlau = 0;
-                                        wahrscheinlichkeitSchwarz = 0;
-                                        wahrscheinlichkeitRot = 0;
-                                        wahrscheinlichkeitGruen = 0;
-                                        wahrscheinlichkeitFarblos = 0;
-
                                     }
                                     erfolgeKumulativGruen = kostenGruen;
                                     erfolgeKumulativRot++;
@@ -201,7 +199,7 @@ namespace Deckbuilding_Assistant
             return verteilung;
         }
 
-        private static double BerechneHypergeometrischeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeszeStichprobe, int erfolgeAngestrebt)
+        public static double BerechneHypergeometrischeVerteilung(int gesamtmenge, int erfolgeGesamt, int groeszeStichprobe, int erfolgeAngestrebt)
         {
             int misserfolgeGesamt = gesamtmenge - erfolgeGesamt;
             int erlaubteMisserfolge = groeszeStichprobe - erfolgeAngestrebt;
@@ -245,13 +243,15 @@ namespace Deckbuilding_Assistant
         //    Assert.AreEqual(19600, Form1.BerechneBinomialkoeffizient(50, 3));
         //}
 
-        //[Test]
-        //public void TesteHypergeometrischeVerteilung()
-        //{
-        //    Assert.AreEqual(0.285033, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 6));
-        //    Assert.AreEqual(0.235767, Math.Round(Form1.BerechneHypergeometrischeVerteilung(99, 30, 7, 3), 6));
-        //    Assert.AreEqual(0.417901, Math.Round(Form1.BerechneHypergeometrischeVerteilung(40, 4, 7, 1), 6));
-        //}
+        [Test]
+        public void TesteHypergeometrischeVerteilung()
+        {
+            Assert.AreEqual(0.285033, Math.Round(Form1.BerechneHypergeometrischeVerteilung(60, 20, 8, 2), 6));
+            Assert.AreEqual(0.235767, Math.Round(Form1.BerechneHypergeometrischeVerteilung(99, 30, 7, 3), 6));
+            Assert.AreEqual(0.417901, Math.Round(Form1.BerechneHypergeometrischeVerteilung(40, 4, 7, 1), 6));
+            Assert.AreEqual(1, Form1.BerechneHypergeometrischeVerteilung(59, 0, 7, 0));
+            Assert.AreEqual(0, Form1.BerechneHypergeometrischeVerteilung(59, 0, 7, 4));
+        }
 
         //[Test]
         //public void TesteKumulativeVerteilung()
