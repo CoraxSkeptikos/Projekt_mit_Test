@@ -85,27 +85,27 @@ namespace Deckbuilding_Assistant
                     {
                         wahrscheinlichkeitWeisz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeWeisz, laenderWeisz, groeszeStichprobeWeisz, erfolgeKumulativWeisz);
                         groeszeStichprobeBlau = groeszeStichprobeWeisz - erfolgeKumulativWeisz;
-                        bibliotheksgroeszeBlau = bibliotheksgroeszeWeisz - erfolgeKumulativWeisz;
+                        bibliotheksgroeszeBlau = bibliotheksgroeszeWeisz - laenderWeisz;
                         while (erfolgeKumulativBlau <= groeszeStichprobeBlau && erfolgeKumulativBlau <= laenderBlau)
                         {
                             wahrscheinlichkeitBlau = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeBlau, laenderBlau, groeszeStichprobeBlau, erfolgeKumulativBlau);
                             groeszeStichprobeSchwarz = groeszeStichprobeBlau - erfolgeKumulativBlau;
-                            bibliotheksgroeszeSchwarz = bibliotheksgroeszeBlau - erfolgeKumulativBlau;
+                            bibliotheksgroeszeSchwarz = bibliotheksgroeszeBlau - laenderBlau;
                             while (erfolgeKumulativSchwarz <= groeszeStichprobeSchwarz && erfolgeKumulativSchwarz <= laenderSchwarz)
                             {
                                 wahrscheinlichkeitSchwarz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeSchwarz, laenderSchwarz, groeszeStichprobeSchwarz, erfolgeKumulativSchwarz);
                                 groeszeStichprobeRot = groeszeStichprobeSchwarz - erfolgeKumulativSchwarz;
-                                bibliotheksgroeszeRot = bibliotheksgroeszeSchwarz - erfolgeKumulativSchwarz;
+                                bibliotheksgroeszeRot = bibliotheksgroeszeSchwarz - laenderSchwarz;
                                 while (erfolgeKumulativRot <= groeszeStichprobeRot && erfolgeKumulativRot <= laenderRot)
                                 {
                                     wahrscheinlichkeitRot = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeRot, laenderRot, groeszeStichprobeRot, erfolgeKumulativRot);
                                     groeszeStichprobeGruen = groeszeStichprobeRot - erfolgeKumulativRot;
-                                    bibliotheksgroeszeGruen = bibliotheksgroeszeRot - erfolgeKumulativRot;
+                                    bibliotheksgroeszeGruen = bibliotheksgroeszeRot - laenderRot;
                                     while (erfolgeKumulativGruen <= groeszeStichprobeGruen && erfolgeKumulativGruen <= laenderGruen)
                                     {
                                         wahrscheinlichkeitGruen = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeGruen, laenderGruen, groeszeStichprobeGruen, erfolgeKumulativGruen);
                                         groeszeStichprobeFarblos = groeszeStichprobeGruen - erfolgeKumulativGruen;
-                                        bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - erfolgeKumulativGruen;
+                                        bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - laenderGruen;
                                         while (erfolgeKumulativFarblos <= groeszeStichprobe && erfolgeKumulativFarblos <= laenderFarblos)
                                         {
                                             wahrscheinlichkeitFarblos = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, erfolgeKumulativFarblos);
