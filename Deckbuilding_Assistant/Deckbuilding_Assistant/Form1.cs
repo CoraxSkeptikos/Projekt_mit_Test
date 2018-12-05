@@ -55,118 +55,26 @@ namespace Deckbuilding_Assistant
                     var verteilungGruen = BerechneBinomialkoeffizient(laenderGruen, kostenGruen);
                     var verteilungFarblos = BerechneBinomialkoeffizient(laenderFarblos, kostenFarblos);
 
+                    //int laenderUebrig = laenderGesamt - cmc;
+                    //laenderUebrig += kostenGenerisch;
+
+                    //var verteilungGenerisch = BerechneBinomialkoeffizient(laenderUebrig, kostenGenerisch);
+
                     var verteilungErfolg = verteilungWeisz * verteilungBlau;
                     verteilungErfolg = verteilungErfolg * verteilungSchwarz;
                     verteilungErfolg = verteilungErfolg * verteilungRot;
                     verteilungErfolg = verteilungErfolg * verteilungGruen;
                     verteilungErfolg = verteilungErfolg * verteilungFarblos;
+                    //verteilungErfolg = verteilungErfolg * verteilungGenerisch;
 
                     int nichtLandKarten = bibliotheksgroesze - laenderGesamt;
-                    int kostenGesamt = kostenWeisz;
-                    kostenGesamt += kostenBlau;
-                    kostenGesamt += kostenSchwarz;
-                    kostenGesamt += kostenRot;
-                    kostenGesamt += kostenGruen;
-                    kostenGesamt += kostenFarblos;
-                    int andereHandkarten = groeszeStichprobe - kostenGesamt;
+                    int andereHandkarten = groeszeStichprobe - cmc;
 
                     var verteilungMisserfolg = BerechneBinomialkoeffizient(nichtLandKarten, andereHandkarten);
                     verteilungErfolg = verteilungErfolg * verteilungMisserfolg;
 
                     var verteilungGesamt = BerechneBinomialkoeffizient(bibliotheksgroesze, groeszeStichprobe);
                     var wahrscheinlichkeitGesamt = verteilungErfolg / verteilungGesamt;
-
-                    //var wahrscheinlichkeitGenerisch = BerechneKumulativeVerteilung(bibliotheksgroesze, laenderGesamt, groeszeStichprobe, kostenGenerisch);
-
-                    //double wahrscheinlichkeitWeisz = 0;
-                    //double wahrscheinlichkeitBlau = 0;
-                    //double wahrscheinlichkeitSchwarz = 0;
-                    //double wahrscheinlichkeitRot = 0;
-                    //double wahrscheinlichkeitGruen = 0;
-                    //double wahrscheinlichkeitFarblos = 0;
-
-                    //int erfolgeKumulativWeisz = kostenWeisz;
-                    //int erfolgeKumulativBlau = kostenBlau;
-                    //int erfolgeKumulativSchwarz = kostenSchwarz;
-                    //int erfolgeKumulativRot = kostenRot;
-                    //int erfolgeKumulativGruen = kostenGruen;
-                    //int erfolgeKumulativFarblos = kostenFarblos;
-
-                    //int groeszeStichprobeWeisz = groeszeStichprobe;
-                    //int groeszeStichprobeBlau = groeszeStichprobe;
-                    //int groeszeStichprobeSchwarz = groeszeStichprobe;
-                    //int groeszeStichprobeRot = groeszeStichprobe;
-                    //int groeszeStichprobeGruen = groeszeStichprobe;
-                    //int groeszeStichprobeFarblos = groeszeStichprobe;
-
-                    //int bibliotheksgroeszeWeisz = bibliotheksgroesze;
-                    //int bibliotheksgroeszeBlau = bibliotheksgroesze;
-                    //int bibliotheksgroeszeSchwarz = bibliotheksgroesze;
-                    //int bibliotheksgroeszeRot = bibliotheksgroesze;
-                    //int bibliotheksgroeszeGruen = bibliotheksgroesze;
-                    //int bibliotheksgroeszeFarblos = bibliotheksgroesze;
-
-                    //List<double> wahrscheinlickeitsliste = new List<double>();
-                    //double wahrscheinlichkeitZwischenergebnis = 1;
-
-                    //while (erfolgeKumulativWeisz <= groeszeStichprobeWeisz && erfolgeKumulativWeisz <= laenderWeisz)
-                    //{
-                    //    wahrscheinlichkeitWeisz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeWeisz, laenderWeisz, groeszeStichprobeWeisz, erfolgeKumulativWeisz);
-                    //    groeszeStichprobeBlau = groeszeStichprobeWeisz - erfolgeKumulativWeisz;
-                    //    bibliotheksgroeszeBlau = bibliotheksgroeszeWeisz - laenderWeisz;
-                    //    while (erfolgeKumulativBlau <= groeszeStichprobeBlau && erfolgeKumulativBlau <= laenderBlau)
-                    //    {
-                    //        wahrscheinlichkeitBlau = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeBlau, laenderBlau, groeszeStichprobeBlau, erfolgeKumulativBlau);
-                    //        groeszeStichprobeSchwarz = groeszeStichprobeBlau - erfolgeKumulativBlau;
-                    //        bibliotheksgroeszeSchwarz = bibliotheksgroeszeBlau - laenderBlau;
-                    //        while (erfolgeKumulativSchwarz <= groeszeStichprobeSchwarz && erfolgeKumulativSchwarz <= laenderSchwarz)
-                    //        {
-                    //            wahrscheinlichkeitSchwarz = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeSchwarz, laenderSchwarz, groeszeStichprobeSchwarz, erfolgeKumulativSchwarz);
-                    //            groeszeStichprobeRot = groeszeStichprobeSchwarz - erfolgeKumulativSchwarz;
-                    //            bibliotheksgroeszeRot = bibliotheksgroeszeSchwarz - laenderSchwarz;
-                    //            while (erfolgeKumulativRot <= groeszeStichprobeRot && erfolgeKumulativRot <= laenderRot)
-                    //            {
-                    //                wahrscheinlichkeitRot = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeRot, laenderRot, groeszeStichprobeRot, erfolgeKumulativRot);
-                    //                groeszeStichprobeGruen = groeszeStichprobeRot - erfolgeKumulativRot;
-                    //                bibliotheksgroeszeGruen = bibliotheksgroeszeRot - laenderRot;
-                    //                while (erfolgeKumulativGruen <= groeszeStichprobeGruen && erfolgeKumulativGruen <= laenderGruen)
-                    //                {
-                    //                    wahrscheinlichkeitGruen = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeGruen, laenderGruen, groeszeStichprobeGruen, erfolgeKumulativGruen);
-                    //                    groeszeStichprobeFarblos = groeszeStichprobeGruen - erfolgeKumulativGruen;
-                    //                    bibliotheksgroeszeFarblos = bibliotheksgroeszeGruen - laenderGruen;
-                    //                    while (erfolgeKumulativFarblos <= groeszeStichprobe && erfolgeKumulativFarblos <= laenderFarblos)
-                    //                    {
-                    //                        wahrscheinlichkeitFarblos = BerechneHypergeometrischeVerteilung(bibliotheksgroeszeFarblos, laenderFarblos, groeszeStichprobeFarblos, erfolgeKumulativFarblos);
-                    //                        erfolgeKumulativFarblos++;
-                    //                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitWeisz * wahrscheinlichkeitBlau;
-                    //                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitSchwarz;
-                    //                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitRot;
-                    //                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitGruen;
-                    //                        wahrscheinlichkeitZwischenergebnis = wahrscheinlichkeitZwischenergebnis * wahrscheinlichkeitFarblos;
-                    //                        wahrscheinlickeitsliste.Add(wahrscheinlichkeitZwischenergebnis);
-                    //                    }
-                    //                    erfolgeKumulativFarblos = kostenFarblos;
-                    //                    erfolgeKumulativGruen++;
-                    //                }
-                    //                erfolgeKumulativGruen = kostenGruen;
-                    //                erfolgeKumulativRot++;
-                    //            }
-                    //            erfolgeKumulativRot = kostenRot;
-                    //            erfolgeKumulativSchwarz++;
-                    //        }
-                    //        erfolgeKumulativSchwarz = kostenSchwarz;
-                    //        erfolgeKumulativBlau++;
-                    //    }
-                    //    erfolgeKumulativBlau = kostenBlau;
-                    //    erfolgeKumulativWeisz++;
-                    //}
-
-                    //double wahrscheinlichkeitGesamt = 0;
-
-                    //foreach (var item in wahrscheinlickeitsliste)
-                    //{
-                    //    wahrscheinlichkeitGesamt += item;
-                    //}
 
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * 100;
                     wahrscheinlichkeitGesamt = Math.Round(wahrscheinlichkeitGesamt, 2);
