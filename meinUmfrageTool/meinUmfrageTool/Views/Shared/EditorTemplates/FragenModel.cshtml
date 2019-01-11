@@ -1,0 +1,5 @@
+﻿@model IEnumerable<meinUmfrageTool.Models.FragenModel>
+    @foreach (var frage in Model)
+    {
+        @Html.TextBoxFor(m => frage.Text)
+    }
