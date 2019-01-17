@@ -67,13 +67,15 @@ namespace Deckbuilding_Assistant
                     verteilungErfolg = verteilungErfolg * verteilungFarblos;
                     //verteilungErfolg = verteilungErfolg * verteilungGenerisch;
 
+                    var verteilungGesamt = BerechneBinomialkoeffizient(bibliotheksgroesze, groeszeStichprobe);
+
                     int nichtLandKarten = bibliotheksgroesze - laenderGesamt;
                     int andereHandkarten = groeszeStichprobe - cmc;
 
                     var verteilungMisserfolg = BerechneBinomialkoeffizient(nichtLandKarten, andereHandkarten);
                     verteilungErfolg = verteilungErfolg * verteilungMisserfolg;
 
-                    var verteilungGesamt = BerechneBinomialkoeffizient(bibliotheksgroesze, groeszeStichprobe);
+                    
                     var wahrscheinlichkeitGesamt = verteilungErfolg / verteilungGesamt;
 
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * 100;

@@ -30,7 +30,7 @@ namespace meinUmfrageTool.Controllers
 
         private static FragebogenModel generischerFragebogen = new FragebogenModel
         {
-            Fragen = new List<FragenModel> { new FragenModel() }
+            Fragen = new List<FragenModel> { new FragenModel() { Text = "Fragentext?" } }
         };
 
         private FragebogenModel _fragebogen;
@@ -67,20 +67,22 @@ namespace meinUmfrageTool.Controllers
         [HttpPost]
         public ActionResult FragebogenErstellen(FragebogenModel fragebogen, string befehl)
         {
-            try
-            {
-                if (befehl == "Frage hinzufuegen")
-                {
-                    fragebogen.Fragen.Add(new FragenModel());
-                    Fragebogen = fragebogen;
-                }
-                return RedirectToAction("FragebogenErstellen");
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //if (befehl == "Frage hinzufuegen")
+            //{
+                //fragebogen.Fragen = new List<FragenModel>();
+                //fragebogen.Fragen.Add(new FragenModel());
+                fragebogen.Bezeichnung = "Haha!";
+                Fragebogen = fragebogen;
+            //}
+            return RedirectToAction("FragebogenErstellen");
+            //}
+            //catch (Exception)
+            //{
 
-                return View();
-            }
+            //    return View();
+            //}
         }
     }
 }
