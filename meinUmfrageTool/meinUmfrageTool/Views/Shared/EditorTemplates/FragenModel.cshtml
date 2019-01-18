@@ -1,5 +1,3 @@
 ﻿@model IEnumerable<meinUmfrageTool.Models.FragenModel>
-    @foreach (var frage in Model)
-    {
-        @Html.TextBoxFor(m => frage.Text)
-    }
+        @Html.TextBoxFor(model => model.Text)
+        @Html.ValidationMessageFor(model => model.Text)
