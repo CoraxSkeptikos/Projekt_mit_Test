@@ -48,35 +48,59 @@ namespace Deckbuilding_Assistant
                 {
                     int groeszeStichprobe = cmc + 5;
 
-                    var verteilungWeisz = BerechneBinomialkoeffizient(laenderWeisz, kostenWeisz);
-                    var verteilungBlau = BerechneBinomialkoeffizient(laenderBlau, kostenBlau);
-                    var verteilungSchwarz = BerechneBinomialkoeffizient(laenderSchwarz, kostenSchwarz);
-                    var verteilungRot = BerechneBinomialkoeffizient(laenderRot, kostenRot);
-                    var verteilungGruen = BerechneBinomialkoeffizient(laenderGruen, kostenGruen);
-                    var verteilungFarblos = BerechneBinomialkoeffizient(laenderFarblos, kostenFarblos);
+                    List<kostenQuellenPaar> kostenQuelleListe = new List<kostenQuellenPaar>();
+                    if (kostenWeisz > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenWeisz, Quellen = laenderWeisz });
+                    }
+                    if (kostenBlau > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenBlau, Quellen = laenderBlau });
+                    }
+                    if (kostenSchwarz > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenSchwarz, Quellen = laenderSchwarz });
+                    }
+                    if (kostenRot > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenRot, Quellen = laenderRot });
+                    }
+                    if (kostenGruen > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenGruen, Quellen = laenderGruen });
+                    }
+                    if (kostenFarblos > 0)
+                    {
+                        kostenQuelleListe.Add(new kostenQuellenPaar { Kosten = kostenFarblos, Quellen = laenderFarblos });
+                    }
 
-                    //int laenderUebrig = laenderGesamt - cmc;
-                    //laenderUebrig += kostenGenerisch;
-
-                    //var verteilungGenerisch = BerechneBinomialkoeffizient(laenderUebrig, kostenGenerisch);
-
-                    var verteilungErfolg = verteilungWeisz * verteilungBlau;
-                    verteilungErfolg = verteilungErfolg * verteilungSchwarz;
-                    verteilungErfolg = verteilungErfolg * verteilungRot;
-                    verteilungErfolg = verteilungErfolg * verteilungGruen;
-                    verteilungErfolg = verteilungErfolg * verteilungFarblos;
-                    //verteilungErfolg = verteilungErfolg * verteilungGenerisch;
-
+                    double verteilungErfolg = 1;
                     var verteilungGesamt = BerechneBinomialkoeffizient(bibliotheksgroesze, groeszeStichprobe);
-
                     int nichtLandKarten = bibliotheksgroesze - laenderGesamt;
-                    int andereHandkarten = groeszeStichprobe - cmc;
+                    int andereHandkarten;
+                    double verteilungMisserfolg;
+                    double wahrscheinlichkeitGesamt = 0;
 
-                    var verteilungMisserfolg = BerechneBinomialkoeffizient(nichtLandKarten, andereHandkarten);
-                    verteilungErfolg = verteilungErfolg * verteilungMisserfolg;
+                    foreach (var item in kostenQuelleListe)
+                    {
+                        for (int i = 0; i <= groeszeStichprobe; i++)
+                        {
+                            verteilungErfolg = verteilungErfolg * BerechneBinomialkoeffizient(item.Quellen, (item.Kosten + i));
+                            andereHandkarten = groeszeStichprobe - (cmc + i);
+                            verteilungMisserfolg = BerechneBinomialkoeffizient(nichtLandKarten, andereHandkarten);
+                            verteilungErfolg = verteilungErfolg * verteilungMisserfolg;
+                    
+                            wahrscheinlichkeitGesamt += verteilungErfolg / verteilungGesamt;
+                        }
+                    
+                    }
+                    
+                    
 
                     
-                    var wahrscheinlichkeitGesamt = verteilungErfolg / verteilungGesamt;
+
+                    
+                    
 
                     wahrscheinlichkeitGesamt = wahrscheinlichkeitGesamt * 100;
                     wahrscheinlichkeitGesamt = Math.Round(wahrscheinlichkeitGesamt, 2);
